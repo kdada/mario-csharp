@@ -1,0 +1,35 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Super Mario Bros. · C# Study"
+run/main_scene="res://Scenes/Game.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="Mario-CSharp-Study"
+config/features=PackedStringArray("4.7", "C#", "Mobile")
+
+[display]
+
+window/size/viewport_width=256
+window/size/viewport_height=240
+window/size/window_width_override=1024
+window/size/window_height_override=960
+window/stretch/mode="viewport"
+
+[dotnet]
+
+project/assembly_name="Mario"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
+renderer/rendering_method="mobile"
+environment/defaults/default_clear_color=Color(0.36, 0.58, 0.99, 1)

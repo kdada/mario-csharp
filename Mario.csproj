@@ -1,0 +1,14 @@
+<Project Sdk="Godot.NET.Sdk/4.7.2-ohos.3">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <LangVersion>latest</LangVersion>
+    <RootNamespace>MarioStudy</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(GodotTargetPlatform)' == 'openharmony' and ('$(Configuration)' == 'ExportDebug' or '$(Configuration)' == 'ExportRelease')">
+    <!-- Godot retains/signs deployment copies; avoid a second SDK signing pass. -->
+    <OpenHarmonyCodesignEnabled>false</OpenHarmonyCodesignEnabled>
+  </PropertyGroup>
+</Project>

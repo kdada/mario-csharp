@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "engineVersion": "4.7.2",
+  "hostAbiVersion": 4,
+  "managedVersion": "4.7.2-ohos.3",
+  "architecture": "arm64-v8a",
+  "engineLibrarySha256": "6ecad4511e0e824f355fff0e3c074962ad25842ee5ccb76b97f0410955418aba",
+  "packageName": "godot-editor",
+  "packageVersion": "4.7.2-ohos.7",
+  "headless": "bin/godot",
+  "managedRoot": "share/godot",
+  "templatesRoot": "share/godot/templates",
+  "templateSetSha256": "32484da5180020ccd00bc36c173fefdeb70afdc649d003ca75c923b1f829dc15",
+  "templateSha256": {
+    "openharmony_debug_arm64-v8a.zip": "82c8c8c9ca2d9c3582f3ab6984bbde1f1a936ad68ad55fc5cca7f99a1bf73f39",
+    "openharmony_release_arm64-v8a.zip": "3dfa98fdd51b3ab80f3b19a71eb812c917e55a437319622cc99602ca61228eac"
+  },
+  "godotPackages": [
+    "Godot.NET.Sdk.4.7.2-ohos.3.nupkg",
+    "Godot.SourceGenerators.4.7.2-ohos.3.nupkg",
+    "GodotSharp.4.7.2-ohos.3.nupkg",
+    "GodotSharpEditor.4.7.2-ohos.3.nupkg"
+  ],
+  "dependencies": [
+    {
+      "name": "dotnet-sdk",
+      "constraint": "=10.0.401-ohos.2",
+      "version_basis": "package",
+      "platforms": [
+        "ohos-arm64"
+      ]
+    }
+  ],
+  "thirdPartyRestore": "normal NuGet sources; no bundled offline feed",
+  "dotnetBuildInfo": {
+    "kind": "sdk",
+    "aspnet_version": "10.0.12",
+    "runtime_version": "10.0.12",
+    "aspnet_source_commit": "d60d36985c7bd607e6652e6349c69eed8708cb70",
+    "runtime_archive_sha256": "8917be58e7bc8f5fb0b8d71d2d397c92b1de3798c34cfbfa3ecebde105e9758d",
+    "runtime_source_commit": "033589b2981f30e657b283f54a3697c5d124fc3b",
+    "rid": "openharmony-arm64",
+    "sdk_version": "10.0.401",
+    "sdk_source_commit": "5d6057dd2728f5009b4b9839012f884c08ac3b05"
+  },
+  "nativeBuild": {
+    "platform": "ohos",
+    "engine_version": "4.7.2.stable.mono.custom_build.bd5e41cdf",
+    "source_commit": "bd5e41cdf5c9e300f67e29689e4fa9fdb6b2d990",
+    "openharmony_host_abi": 4,
+    "source_tree_clean": true,
+    "godot_sha256": "36cee54e9f6adcc0b75744f81bc282758523f45c7c5b1058b71fdb33a7d2fed3",
+    "libgodot.so_sha256": "6ecad4511e0e824f355fff0e3c074962ad25842ee5ccb76b97f0410955418aba"
+  }
+}

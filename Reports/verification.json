@@ -1,0 +1,3555 @@
+{
+  "engine": "4.7.2-stable (custom_build)",
+  "platform": "OpenHarmony",
+  "display": "headless",
+  "renderingDriver": "vulkan",
+  "timestamp": "2026-10-18T02:10:57.4184104+08:00",
+  "failures": 0,
+  "checks": [
+    {
+      "name": "render cloud-1 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render cloud-1 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render cloud-1 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render cloud-2 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render cloud-2 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render cloud-2 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render cloud-3 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render cloud-3 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render cloud-3 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render cloud-4 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render cloud-4 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render cloud-4 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 1-1 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 1-1 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 1-1 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 1-1a 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 1-1a 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 1-1a 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 1-2 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 1-2 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 1-2 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 1-2a 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 1-2a 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 1-2a 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 1-3 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 1-3 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 1-3 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 1-4 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 1-4 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 1-4 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 2-1 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 2-1 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 2-1 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 2-1a 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 2-1a 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 2-1a 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 2-2 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 2-2 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 2-2 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 2-3 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 2-3 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 2-3 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 2-4 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 2-4 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 2-4 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 3-1 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 3-1 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 3-1 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 3-1a 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 3-1a 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 3-1a 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 3-2 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 3-2 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 3-2 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 3-3 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 3-3 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 3-3 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 3-4 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 3-4 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 3-4 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 4-1 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 4-1 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 4-1 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 4-1a 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 4-1a 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 4-1a 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 4-2 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 4-2 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 4-2 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 4-2a 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 4-2a 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 4-2a 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 4-2b 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 4-2b 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 4-2b 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 4-3 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 4-3 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 4-3 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 4-4 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 4-4 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 4-4 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 5-1 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 5-1 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 5-1 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 5-1a 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 5-1a 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 5-1a 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 5-2 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 5-2 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 5-2 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 5-2a 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 5-2a 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 5-2a 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 5-3 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 5-3 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 5-3 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 5-4 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 5-4 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 5-4 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 6-1 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 6-1 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 6-1 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 6-2 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 6-2 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 6-2 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 6-2a 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 6-2a 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 6-2a 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 6-2b 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 6-2b 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 6-2b 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 6-2c 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 6-2c 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 6-2c 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 6-3 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 6-3 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 6-3 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 6-4 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 6-4 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 6-4 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 7-1 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 7-1 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 7-1 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 7-1a 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 7-1a 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 7-1a 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 7-2 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 7-2 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 7-2 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 7-3 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 7-3 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 7-3 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 7-4 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 7-4 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 7-4 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-1 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-1 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-1 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-1a 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-1a 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-1a 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-2 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-2 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-2 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-2a 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-2a 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-2a 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-3 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-3 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-3 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-4 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-4 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-4 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-4a 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-4a 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-4a 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-4b 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-4b 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-4b 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-4c 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-4c 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-4c 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-4d 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-4d 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render 8-4d 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render UndergroundExit 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render UndergroundExit 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render UndergroundExit 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render UnderwaterExit 0.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render UnderwaterExit 0.5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "render UnderwaterExit 1.0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "32 main levels",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "level 1-1",
+      "passed": true,
+      "detail": "tiles=777, entities=73, spawnFloor=0.0"
+    },
+    {
+      "name": "level 1-2",
+      "passed": true,
+      "detail": "tiles=622, entities=490, spawnFloor=0.0"
+    },
+    {
+      "name": "level 1-3",
+      "passed": true,
+      "detail": "tiles=576, entities=153, spawnFloor=0.0"
+    },
+    {
+      "name": "level 1-4",
+      "passed": true,
+      "detail": "tiles=1251, entities=40, spawnFloor=-96.0"
+    },
+    {
+      "name": "level 2-1",
+      "passed": true,
+      "detail": "tiles=742, entities=107, spawnFloor=0.0"
+    },
+    {
+      "name": "level 2-2",
+      "passed": true,
+      "detail": "tiles=3286, entities=42, spawnFloor=0.0"
+    },
+    {
+      "name": "level 2-3",
+      "passed": true,
+      "detail": "tiles=690, entities=144, spawnFloor=0.0"
+    },
+    {
+      "name": "level 2-4",
+      "passed": true,
+      "detail": "tiles=1023, entities=69, spawnFloor=-96.0"
+    },
+    {
+      "name": "level 3-1",
+      "passed": true,
+      "detail": "tiles=784, entities=110, spawnFloor=0.0"
+    },
+    {
+      "name": "level 3-2",
+      "passed": true,
+      "detail": "tiles=718, entities=56, spawnFloor=0.0"
+    },
+    {
+      "name": "level 3-3",
+      "passed": true,
+      "detail": "tiles=587, entities=45, spawnFloor=0.0"
+    },
+    {
+      "name": "level 3-4",
+      "passed": true,
+      "detail": "tiles=947, entities=65, spawnFloor=-96.0"
+    },
+    {
+      "name": "level 4-1",
+      "passed": true,
+      "detail": "tiles=755, entities=68, spawnFloor=0.0"
+    },
+    {
+      "name": "level 4-2",
+      "passed": true,
+      "detail": "tiles=698, entities=774, spawnFloor=0.0"
+    },
+    {
+      "name": "level 4-3",
+      "passed": true,
+      "detail": "tiles=399, entities=173, spawnFloor=0.0"
+    },
+    {
+      "name": "level 4-4",
+      "passed": true,
+      "detail": "tiles=1230, entities=27, spawnFloor=-96.0"
+    },
+    {
+      "name": "level 5-1",
+      "passed": true,
+      "detail": "tiles=698, entities=61, spawnFloor=0.0"
+    },
+    {
+      "name": "level 5-2",
+      "passed": true,
+      "detail": "tiles=698, entities=123, spawnFloor=0.0"
+    },
+    {
+      "name": "level 5-3",
+      "passed": true,
+      "detail": "tiles=552, entities=157, spawnFloor=0.0"
+    },
+    {
+      "name": "level 5-4",
+      "passed": true,
+      "detail": "tiles=999, entities=69, spawnFloor=-96.0"
+    },
+    {
+      "name": "level 6-1",
+      "passed": true,
+      "detail": "tiles=646, entities=84, spawnFloor=0.0"
+    },
+    {
+      "name": "level 6-2",
+      "passed": true,
+      "detail": "tiles=940, entities=97, spawnFloor=0.0"
+    },
+    {
+      "name": "level 6-3",
+      "passed": true,
+      "detail": "tiles=463, entities=193, spawnFloor=0.0"
+    },
+    {
+      "name": "level 6-4",
+      "passed": true,
+      "detail": "tiles=1251, entities=40, spawnFloor=-96.0"
+    },
+    {
+      "name": "level 7-1",
+      "passed": true,
+      "detail": "tiles=714, entities=75, spawnFloor=0.0"
+    },
+    {
+      "name": "level 7-2",
+      "passed": true,
+      "detail": "tiles=3286, entities=49, spawnFloor=0.0"
+    },
+    {
+      "name": "level 7-3",
+      "passed": true,
+      "detail": "tiles=690, entities=144, spawnFloor=0.0"
+    },
+    {
+      "name": "level 7-4",
+      "passed": true,
+      "detail": "tiles=1384, entities=49, spawnFloor=-96.0"
+    },
+    {
+      "name": "level 8-1",
+      "passed": true,
+      "detail": "tiles=1256, entities=144, spawnFloor=0.0"
+    },
+    {
+      "name": "level 8-2",
+      "passed": true,
+      "detail": "tiles=783, entities=112, spawnFloor=0.0"
+    },
+    {
+      "name": "level 8-3",
+      "passed": true,
+      "detail": "tiles=1425, entities=73, spawnFloor=0.0"
+    },
+    {
+      "name": "level 8-4",
+      "passed": true,
+      "detail": "tiles=541, entities=26, spawnFloor=-96.0"
+    },
+    {
+      "name": "room data cloud-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data cloud-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data cloud-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data cloud-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 1-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 1-1a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 1-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 1-2a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 1-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 1-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 2-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 2-1a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 2-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 2-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 2-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 3-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 3-1a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 3-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 3-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 3-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 4-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 4-1a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 4-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 4-2a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 4-2b",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 4-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 4-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 5-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 5-1a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 5-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 5-2a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 5-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 5-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 6-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 6-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 6-2a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 6-2b",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 6-2c",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 6-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 6-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 7-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 7-1a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 7-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 7-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 7-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 8-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 8-1a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 8-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 8-2a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 8-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 8-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 8-4a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 8-4b",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 8-4c",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data 8-4d",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data UndergroundExit",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "room data UnderwaterExit",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Players/Mario/Small.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Players/Mario/Big.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Players/Mario/Fire.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Enemies/Goomba.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Enemies/KoopaTroopa.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Enemies/Bowser.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Enemies/Blooper.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Enemies/CheepCheep.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Enemies/HammerBro.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Enemies/Lakitu.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Enemies/PiranhaPlant.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Enemies/BuzzyBeetle.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Enemies/Spiny.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Enemies/BulletBill.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Items/StaticCoin.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Items/FireFlower.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Items/SuperMushroom.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Items/1UP.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Items/SuperStar.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Blocks/QuestionBlock.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Tilesets/Terrain/Overworld.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Tilesets/Terrain/Underground.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Tilesets/Terrain/Castle.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "original art Tilesets/Terrain/Underwater.png",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "variable jump long",
+      "passed": true,
+      "detail": "54.93"
+    },
+    {
+      "name": "variable jump release",
+      "passed": true,
+      "detail": "31.09"
+    },
+    {
+      "name": "pause freezes hazard animation clock",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "run accelerates",
+      "passed": true,
+      "detail": "(-13.844482, 0)"
+    },
+    {
+      "name": "question emits mushroom",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "big Mario breaks brick",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "fire flower shoots",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "damage shrinks and protects",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "star defeats enemy",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "underwater swim",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipe enters bonus room",
+      "passed": true,
+      "detail": "1-1a"
+    },
+    {
+      "name": "pipe returns at matching exit",
+      "passed": true,
+      "detail": "(2368, -12)"
+    },
+    {
+      "name": "pipe link 1-1/PipeArea",
+      "passed": true,
+      "detail": "1-1a"
+    },
+    {
+      "name": "pipe link 1-1a/PipeArea",
+      "passed": true,
+      "detail": "1-1"
+    },
+    {
+      "name": "pipe link 1-2/PipeArea",
+      "passed": true,
+      "detail": "1-2a"
+    },
+    {
+      "name": "pipe link 1-2/PipeArea3",
+      "passed": true,
+      "detail": "UndergroundExit"
+    },
+    {
+      "name": "pipe link 1-2a/PipeArea",
+      "passed": true,
+      "detail": "1-2"
+    },
+    {
+      "name": "pipe link 2-1/PipeArea",
+      "passed": true,
+      "detail": "2-1a"
+    },
+    {
+      "name": "pipe link 2-1a/PipeArea",
+      "passed": true,
+      "detail": "2-1"
+    },
+    {
+      "name": "pipe link 2-2/PipeArea",
+      "passed": true,
+      "detail": "UnderwaterExit"
+    },
+    {
+      "name": "pipe link 3-1/PipeArea",
+      "passed": true,
+      "detail": "3-1a"
+    },
+    {
+      "name": "pipe link 3-1a/PipeArea",
+      "passed": true,
+      "detail": "3-1"
+    },
+    {
+      "name": "pipe link 4-1/PipeArea",
+      "passed": true,
+      "detail": "4-1a"
+    },
+    {
+      "name": "pipe link 4-1a/PipeArea",
+      "passed": true,
+      "detail": "4-1"
+    },
+    {
+      "name": "pipe link 4-2/PipeArea",
+      "passed": true,
+      "detail": "4-2a"
+    },
+    {
+      "name": "pipe link 4-2/PipeArea3",
+      "passed": true,
+      "detail": "UndergroundExit"
+    },
+    {
+      "name": "pipe link 4-2a/PipeArea",
+      "passed": true,
+      "detail": "4-2"
+    },
+    {
+      "name": "pipe link 5-1/PipeArea",
+      "passed": true,
+      "detail": "5-1a"
+    },
+    {
+      "name": "pipe link 5-1a/PipeArea",
+      "passed": true,
+      "detail": "5-1"
+    },
+    {
+      "name": "pipe link 5-2/PipeArea",
+      "passed": true,
+      "detail": "5-2a"
+    },
+    {
+      "name": "pipe link 5-2a/PipeArea",
+      "passed": true,
+      "detail": "5-2"
+    },
+    {
+      "name": "pipe link 6-2/PipeArea",
+      "passed": true,
+      "detail": "6-2a"
+    },
+    {
+      "name": "pipe link 6-2/PipeArea3",
+      "passed": true,
+      "detail": "6-2b"
+    },
+    {
+      "name": "pipe link 6-2/PipeArea5",
+      "passed": true,
+      "detail": "6-2c"
+    },
+    {
+      "name": "pipe link 6-2a/PipeArea",
+      "passed": true,
+      "detail": "6-2"
+    },
+    {
+      "name": "pipe link 6-2b/PipeArea",
+      "passed": true,
+      "detail": "6-2"
+    },
+    {
+      "name": "pipe link 6-2c/PipeArea",
+      "passed": true,
+      "detail": "6-2"
+    },
+    {
+      "name": "pipe link 7-1/PipeArea",
+      "passed": true,
+      "detail": "7-1a"
+    },
+    {
+      "name": "pipe link 7-1a/PipeArea",
+      "passed": true,
+      "detail": "7-1"
+    },
+    {
+      "name": "pipe link 7-2/PipeArea",
+      "passed": true,
+      "detail": "UnderwaterExit"
+    },
+    {
+      "name": "pipe link 8-1/PipeArea",
+      "passed": true,
+      "detail": "8-1a"
+    },
+    {
+      "name": "pipe link 8-1a/PipeArea",
+      "passed": true,
+      "detail": "8-1"
+    },
+    {
+      "name": "pipe link 8-2/PipeArea",
+      "passed": true,
+      "detail": "8-2a"
+    },
+    {
+      "name": "pipe link 8-2a/PipeArea",
+      "passed": true,
+      "detail": "8-2"
+    },
+    {
+      "name": "pipe link 8-4/PipeArea2",
+      "passed": true,
+      "detail": "8-4a"
+    },
+    {
+      "name": "pipe link 8-4a/PipeArea2",
+      "passed": true,
+      "detail": "8-4"
+    },
+    {
+      "name": "pipe link 8-4a/PipeArea3",
+      "passed": true,
+      "detail": "8-4"
+    },
+    {
+      "name": "pipe link 8-4a/PipeArea4",
+      "passed": true,
+      "detail": "8-4b"
+    },
+    {
+      "name": "pipe link 8-4b/PipeArea3",
+      "passed": true,
+      "detail": "8-4"
+    },
+    {
+      "name": "pipe link 8-4b/PipeArea4",
+      "passed": true,
+      "detail": "8-4c"
+    },
+    {
+      "name": "pipe link 8-4c/PipeArea2",
+      "passed": true,
+      "detail": "8-4d"
+    },
+    {
+      "name": "pipe link 8-4d/PipeArea2",
+      "passed": true,
+      "detail": "8-4"
+    },
+    {
+      "name": "vine destination 2-1",
+      "passed": true,
+      "detail": "cloud-1"
+    },
+    {
+      "name": "cloud return 2-1",
+      "passed": true,
+      "detail": "(2352, -208)"
+    },
+    {
+      "name": "vine destination 3-1",
+      "passed": true,
+      "detail": "cloud-2"
+    },
+    {
+      "name": "cloud return 3-1",
+      "passed": true,
+      "detail": "(2352, -208)"
+    },
+    {
+      "name": "vine destination 4-2",
+      "passed": true,
+      "detail": "4-2b"
+    },
+    {
+      "name": "vine destination 5-2",
+      "passed": true,
+      "detail": "cloud-3"
+    },
+    {
+      "name": "cloud return 5-2",
+      "passed": true,
+      "detail": "(1840, -208)"
+    },
+    {
+      "name": "vine destination 6-2",
+      "passed": true,
+      "detail": "cloud-4"
+    },
+    {
+      "name": "cloud return 6-2",
+      "passed": true,
+      "detail": "(2352, -208)"
+    },
+    {
+      "name": "wrong castle route 4-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "correct castle route 4-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "wrong castle route 7-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "correct castle route 7-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "paired rope conserves length",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "platform carries standing rider",
+      "passed": true,
+      "detail": "(1213.4957, -80)"
+    },
+    {
+      "name": "warp zone selects world 4",
+      "passed": true,
+      "detail": "4-1"
+    },
+    {
+      "name": "Bowser takes five fireballs",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "axe collapses bridge",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "timer bonus and three fireworks",
+      "passed": true,
+      "detail": "fireworks=3, bonus=2650"
+    },
+    {
+      "name": "progression 1-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 1-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 1-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 1-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 2-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 2-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 2-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 2-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 3-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 3-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 3-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 3-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 4-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 4-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 4-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 4-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 5-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 5-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 5-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 5-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 6-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 6-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 6-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 6-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 7-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 7-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 7-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 7-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 8-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 8-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 8-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "progression 8-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "full campaign completion",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "head contact power=0 left=False",
+      "passed": true,
+      "detail": "head=(2, -48), block=(0, -64), (16, 16), used=True"
+    },
+    {
+      "name": "head contact power=0 left=True",
+      "passed": true,
+      "detail": "head=(2, -48), block=(0, -64), (16, 16), used=True"
+    },
+    {
+      "name": "head contact power=1 left=False",
+      "passed": true,
+      "detail": "head=(2, -48), block=(0, -64), (16, 16), used=True"
+    },
+    {
+      "name": "head contact power=1 left=True",
+      "passed": true,
+      "detail": "head=(2, -48), block=(0, -64), (16, 16), used=True"
+    },
+    {
+      "name": "head contact power=2 left=False",
+      "passed": true,
+      "detail": "head=(2, -48), block=(0, -64), (16, 16), used=True"
+    },
+    {
+      "name": "head contact power=2 left=True",
+      "passed": true,
+      "detail": "head=(2, -48), block=(0, -64), (16, 16), used=True"
+    },
+    {
+      "name": "outside edge misses question left=False edge=False",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "outside edge misses question left=False edge=True",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "outside edge misses question left=True edge=False",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "outside edge misses question left=True edge=True",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mushroom begins centered inside source block",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mushroom rises vertically without horizontal drift",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mushroom completes on block top facing right",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mushroom moves right after emergence",
+      "passed": true,
+      "detail": "position=(127.99985, -64), velocity=(40, 0)"
+    },
+    {
+      "name": "emergence crossing step does not collide with source side",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "walk back across former screen left edge",
+      "passed": true,
+      "detail": "advancedX=100.15, oldCamera=-59.85, returnX=-194.30559"
+    },
+    {
+      "name": "camera follows return to earlier terrain",
+      "passed": true,
+      "detail": "oldCamera=-59.85, returnCamera=-272"
+    },
+    {
+      "name": "backtracking respects world left boundary",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "camera respects world right boundary",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "living enemy retained behind camera for return",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "emerging SuperMushroom cannot be collected left=False",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "emerged SuperMushroom launch direction left=False",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "collect SuperMushroom applies effect left=False",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "collect SuperMushroom only once left=False",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "emerging SuperMushroom cannot be collected left=True",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "emerged SuperMushroom launch direction left=True",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "collect SuperMushroom applies effect left=True",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "collect SuperMushroom only once left=True",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "emerging FireFlower cannot be collected left=False",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "emerged FireFlower launch direction left=False",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "collect FireFlower applies effect left=False",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "collect FireFlower only once left=False",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "emerging FireFlower cannot be collected left=True",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "emerged FireFlower launch direction left=True",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "collect FireFlower applies effect left=True",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "collect FireFlower only once left=True",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "emerging OneUp cannot be collected left=False",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "emerged OneUp launch direction left=False",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "collect OneUp applies effect left=False",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "collect OneUp only once left=False",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "emerging OneUp cannot be collected left=True",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "emerged OneUp launch direction left=True",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "collect OneUp applies effect left=True",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "collect OneUp only once left=True",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "emerging SuperStar cannot be collected left=False",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "emerged SuperStar launch direction left=False",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "collect SuperStar applies effect left=False",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "collect SuperStar only once left=False",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "emerging SuperStar cannot be collected left=True",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "emerged SuperStar launch direction left=True",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "collect SuperStar applies effect left=True",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "collect SuperStar only once left=True",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mushroom emergence stable at step 0.03333",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mushroom emergence stable at step 0.01667",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mushroom emergence stable at step 0.00833",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "mushroom reverses at real wall",
+      "passed": true,
+      "detail": "(88.666794, 0)"
+    },
+    {
+      "name": "bidirectional camera bounds cloud-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds cloud-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds cloud-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds cloud-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 1-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 1-1a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 1-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 1-2a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 1-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 1-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 2-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 2-1a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 2-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 2-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 2-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 3-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 3-1a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 3-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 3-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 3-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 4-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 4-1a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 4-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 4-2a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 4-2b",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 4-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 4-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 5-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 5-1a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 5-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 5-2a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 5-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 5-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 6-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 6-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 6-2a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 6-2b",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 6-2c",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 6-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 6-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 7-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 7-1a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 7-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 7-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 7-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 8-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 8-1a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 8-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 8-2a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 8-3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 8-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 8-4a",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 8-4b",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 8-4c",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds 8-4d",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds UndergroundExit",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bidirectional camera bounds UnderwaterExit",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "physical forward and return movement 1-1",
+      "passed": true,
+      "detail": "start=-208, right=-79.50003, return=-193.95561"
+    },
+    {
+      "name": "physical return camera stays bounded 1-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "physical forward and return movement 1-2",
+      "passed": true,
+      "detail": "start=-208, right=-81.899994, return=-196.35558"
+    },
+    {
+      "name": "physical return camera stays bounded 1-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "physical forward and return movement 2-2",
+      "passed": true,
+      "detail": "start=-224, right=-121.58357, return=-216.80557"
+    },
+    {
+      "name": "physical return camera stays bounded 2-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "physical forward and return movement 1-4",
+      "passed": true,
+      "detail": "start=-248, right=-119.50003, return=-170"
+    },
+    {
+      "name": "physical return camera stays bounded 1-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "camera dead zone avoids small reversal jitter",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "offscreen winged enemy phase freezes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "returning winged enemy does not jump phase",
+      "passed": true,
+      "detail": "before=(80, -78.800125), returned=(80, -77.601)"
+    },
+    {
+      "name": "return visit preserves used block item and collected coin",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipe exit starts inside actual destination 0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipe exit ends exactly on pipe rim 0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipe exit starts inside actual destination 1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipe exit ends exactly on pipe rim 1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "A moves left",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D moves right",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "J starts jump",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "held J does not repeat jump press",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "K fires and enables run",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "held K runs without repeating fire press",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "D plus K reaches running speed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "release K returns to walking speed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "fire damage downgrades to big Mario",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "damage protection prevents repeated downgrade",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "second damage downgrades big to small",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "small Mario dies on next damage",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "brick bump reverses and launches mushroom",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bumped mushroom rises and moves opposite",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bump collects coin directly above brick",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bump leaves adjacent coin intact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "bumped coin counted once",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "breaking brick also collects coin above",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "side pipe preserves feet on entry 0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "side pipe keeps horizontal trajectory 0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "destination clears crouch for exit 0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "finished exit is standing on rim 0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "side pipe preserves feet on entry 1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "side pipe keeps horizontal trajectory 1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "destination clears crouch for exit 1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "finished exit is standing on rim 1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "castle centered during clear (0, 11, 1)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "fireworks follow time last digit (0, 11, 1)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "fireworks award 500 points each (0, 11, 1)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "castle centered during clear (2, 13, 3)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "fireworks follow time last digit (2, 13, 3)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "fireworks award 500 points each (2, 13, 3)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "castle centered during clear (0, 16, 6)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "fireworks follow time last digit (0, 16, 6)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "fireworks award 500 points each (0, 16, 6)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "castle centered during clear (0, 12, 0)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "fireworks follow time last digit (0, 12, 0)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "fireworks award 500 points each (0, 12, 0)",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "K long jump clears four tiles at 30Hz power 0",
+      "passed": true,
+      "detail": "64.966"
+    },
+    {
+      "name": "K long jump clears four tiles at 30Hz power 1",
+      "passed": true,
+      "detail": "64.966"
+    },
+    {
+      "name": "K long jump clears four tiles at 30Hz power 2",
+      "passed": true,
+      "detail": "64.966"
+    },
+    {
+      "name": "K long jump clears four tiles at 60Hz power 0",
+      "passed": true,
+      "detail": "64.991"
+    },
+    {
+      "name": "K long jump clears four tiles at 60Hz power 1",
+      "passed": true,
+      "detail": "64.991"
+    },
+    {
+      "name": "K long jump clears four tiles at 60Hz power 2",
+      "passed": true,
+      "detail": "64.991"
+    },
+    {
+      "name": "K long jump clears four tiles at 120Hz power 0",
+      "passed": true,
+      "detail": "64.998"
+    },
+    {
+      "name": "K long jump clears four tiles at 120Hz power 1",
+      "passed": true,
+      "detail": "64.998"
+    },
+    {
+      "name": "K long jump clears four tiles at 120Hz power 2",
+      "passed": true,
+      "detail": "64.998"
+    },
+    {
+      "name": "releasing J retains short jump control",
+      "passed": true,
+      "detail": "33.700"
+    },
+    {
+      "name": "K jump escapes a four-tile pit without initial run-up",
+      "passed": true,
+      "detail": "(234.91667, 0)"
+    },
+    {
+      "name": "curved jump lands on vertically stacked upper block power 0",
+      "passed": true,
+      "detail": "(15.350024, -112)"
+    },
+    {
+      "name": "curved jump lands on vertically stacked upper block power 1",
+      "passed": true,
+      "detail": "(16.206573, -112)"
+    },
+    {
+      "name": "curved jump lands on vertically stacked upper block power 2",
+      "passed": true,
+      "detail": "(16.206573, -112)"
+    },
+    {
+      "name": "straight jump cannot pass through upper block",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "running duck slides into one-tile tunnel power 1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "low ceiling prevents standing and ordinary walking power 1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "duck jump traverses tunnel and restores standing outside power 1",
+      "passed": true,
+      "detail": "(164.82224, 0)"
+    },
+    {
+      "name": "running duck slides into one-tile tunnel power 2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "low ceiling prevents standing and ordinary walking power 2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "duck jump traverses tunnel and restores standing outside power 2",
+      "passed": true,
+      "detail": "(164.82224, 0)"
+    },
+    {
+      "name": "crouched fireball originates twelve pixels lower",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouched fireball travels inside one-tile tunnel",
+      "passed": true,
+      "detail": "(34, -1.0833325)"
+    },
+    {
+      "name": "multi-coin window starts at first hit",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "multi-coin block accepts another hit inside window",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pause freezes multi-coin window",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "expired coin window leaves exactly one final coin",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "expired block pays final coin once then becomes used",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "coin collection preserves score without 200 popup",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "each successful block hit emits one spinning coin",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "block coin rises above source block",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "block coin vanishes after animation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ordinary coin pickup has no score label",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "rapid multi-coin hits respect maximum count",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "vertical entry remains centered between pipe cap tiles power 0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "vertical entry remains centered between pipe cap tiles power 1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "vertical entry remains centered between pipe cap tiles power 2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "head-on enemies both reverse list reversed False",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "enemy contact does not repeatedly reverse False",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "head-on enemies both reverse list reversed True",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "enemy contact does not repeatedly reverse True",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "same-direction contact turns trailing enemy direction -1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "same-direction contact turns trailing enemy direction 1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "vertical enemy contact does not cause side reversal",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "walker reverses against stationary shell",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "moving shell defeats enemy without tunneling dt 0.017",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "moving shell defeats enemy without tunneling dt 0.100",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "shell impacts resolve earliest contact before shell-shell collision order 0",
+      "passed": true,
+      "detail": "score=1800, combo=2/1"
+    },
+    {
+      "name": "shell impacts resolve earliest contact before shell-shell collision order 1",
+      "passed": true,
+      "detail": "score=1800, combo=2/1"
+    },
+    {
+      "name": "shell impacts resolve earliest contact before shell-shell collision order 2",
+      "passed": true,
+      "detail": "score=1800, combo=2/1"
+    },
+    {
+      "name": "enemy separation does not push through wall",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "offscreen frozen enemies do not collide or turn",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "adjacent enemy stomp avoids order-dependent damage False",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "adjacent enemy stomp avoids order-dependent damage True",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "fireball hit flips and launches defeated enemy",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "flipped defeated enemy falls out of scene",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "death returns to main stage start from middle",
+      "passed": true,
+      "detail": "(-208, 0)"
+    },
+    {
+      "name": "death returns to main stage start from bonus",
+      "passed": true,
+      "detail": "(-208, 0)"
+    },
+    {
+      "name": "1-4 axe sits above wall",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "1-4 touching visible axe clears bridge",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "1-4 castle clear walks and falls along terrain",
+      "passed": true,
+      "detail": "(2152.0059, 0)"
+    },
+    {
+      "name": "2-4 axe sits above wall",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "2-4 touching visible axe clears bridge",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "2-4 castle clear walks and falls along terrain",
+      "passed": true,
+      "detail": "(2152.0059, 0)"
+    },
+    {
+      "name": "3-4 axe sits above wall",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "3-4 touching visible axe clears bridge",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "3-4 castle clear walks and falls along terrain",
+      "passed": true,
+      "detail": "(2152.0059, 0)"
+    },
+    {
+      "name": "4-4 axe sits above wall",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "4-4 touching visible axe clears bridge",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "4-4 castle clear walks and falls along terrain",
+      "passed": true,
+      "detail": "(2664.0059, 0)"
+    },
+    {
+      "name": "5-4 axe sits above wall",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "5-4 touching visible axe clears bridge",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "5-4 castle clear walks and falls along terrain",
+      "passed": true,
+      "detail": "(2152.0059, 0)"
+    },
+    {
+      "name": "6-4 axe sits above wall",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "6-4 touching visible axe clears bridge",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "6-4 castle clear walks and falls along terrain",
+      "passed": true,
+      "detail": "(2152.0059, 0)"
+    },
+    {
+      "name": "7-4 axe sits above wall",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "7-4 touching visible axe clears bridge",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "7-4 castle clear walks and falls along terrain",
+      "passed": true,
+      "detail": "(3176.0059, 0)"
+    },
+    {
+      "name": "8-4d axe sits above wall",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "8-4d touching visible axe clears bridge",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "8-4d castle clear walks and falls along terrain",
+      "passed": true,
+      "detail": "(671.9979, 0)"
+    },
+    {
+      "name": "2-1 large start castle reaches ground",
+      "passed": true,
+      "detail": "0"
+    },
+    {
+      "name": "castle background layers precede overlapping masonry",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "NES star preserves normal K running speed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "TIME counts at 1.5 units per second",
+      "passed": true,
+      "detail": "397.001"
+    },
+    {
+      "name": "block coin rises one and half tiles at 30Hz",
+      "passed": true,
+      "detail": "23.937"
+    },
+    {
+      "name": "block coin rises one and half tiles at 60Hz",
+      "passed": true,
+      "detail": "24.000"
+    },
+    {
+      "name": "block coin rises one and half tiles at 120Hz",
+      "passed": true,
+      "detail": "24.000"
+    },
+    {
+      "name": "ducked vertical pipe hides whole standing sprite power 0",
+      "passed": true,
+      "detail": "19.733"
+    },
+    {
+      "name": "ducked vertical pipe hides whole standing sprite power 1",
+      "passed": true,
+      "detail": "35.520"
+    },
+    {
+      "name": "ducked vertical pipe hides whole standing sprite power 2",
+      "passed": true,
+      "detail": "35.520"
+    },
+    {
+      "name": "1-1a side pipe rejects four pixel gap",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "1-1a touching pipe rejects opposite direction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "1-1a touching pipe requires inward input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "1-1a side pipe rejects incorrect height",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "1-1a side pipe accepts exact contact and inward input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "1-1a walking enters only after physical pipe contact",
+      "passed": true,
+      "detail": "right=80.000, mouth=80.000"
+    },
+    {
+      "name": "1-2 side pipe rejects four pixel gap",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "1-2 touching pipe rejects opposite direction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "1-2 touching pipe requires inward input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "1-2 side pipe rejects incorrect height",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "1-2 side pipe accepts exact contact and inward input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "1-2 walking enters only after physical pipe contact",
+      "passed": true,
+      "detail": "right=2400.000, mouth=2400.000"
+    },
+    {
+      "name": "8-4c side pipe rejects four pixel gap",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "8-4c touching pipe rejects opposite direction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "8-4c touching pipe requires inward input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "8-4c side pipe rejects incorrect height",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "8-4c side pipe accepts exact contact and inward input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "8-4c walking enters only after physical pipe contact",
+      "passed": true,
+      "detail": "right=848.000, mouth=848.000"
+    },
+    {
+      "name": "fire damage inside low tunnel preserves sixteen pixel crouch",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "SuperMushroom starts frozen power transition",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "SuperMushroom shows target form during transition",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "SuperMushroom alternates source form during transition",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "SuperMushroom freezes player enemies platforms shots TIME and blocks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "SuperMushroom resumes with target form and preserved velocity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "SuperMushroom world resumes after transition",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "FireFlower starts frozen power transition",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "FireFlower shows target form during transition",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "FireFlower alternates source form during transition",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "FireFlower freezes player enemies platforms shots TIME and blocks",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "FireFlower resumes with target form and preserved velocity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "FireFlower world resumes after transition",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "growth under low ceiling ends safely crouched",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "coin above bumped brick is counted once 30Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "coin above brick rises half tile power 0 30Hz",
+      "passed": true,
+      "detail": "7.939"
+    },
+    {
+      "name": "above coin disappears and cannot be awarded twice power 0 30Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "coin above broken brick is counted once 30Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "coin above brick rises half tile power 1 30Hz",
+      "passed": true,
+      "detail": "7.939"
+    },
+    {
+      "name": "above coin disappears and cannot be awarded twice power 1 30Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "coin above bumped brick is counted once 60Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "coin above brick rises half tile power 0 60Hz",
+      "passed": true,
+      "detail": "8.000"
+    },
+    {
+      "name": "above coin disappears and cannot be awarded twice power 0 60Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "coin above broken brick is counted once 60Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "coin above brick rises half tile power 1 60Hz",
+      "passed": true,
+      "detail": "8.000"
+    },
+    {
+      "name": "above coin disappears and cannot be awarded twice power 1 60Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "coin above bumped brick is counted once 120Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "coin above brick rises half tile power 0 120Hz",
+      "passed": true,
+      "detail": "8.000"
+    },
+    {
+      "name": "above coin disappears and cannot be awarded twice power 0 120Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "coin above broken brick is counted once 120Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "coin above brick rises half tile power 1 120Hz",
+      "passed": true,
+      "detail": "8.000"
+    },
+    {
+      "name": "above coin disappears and cannot be awarded twice power 1 120Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "entry hides exposed piranha before enemy contact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pipe transition leaves unrelated piranhas unsuppressed",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "piranha stays hidden while Mario remains at mouth",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "suppressed piranha cannot damage Mario",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "piranha resumes normal cycle after Mario leaves pipe",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "cached destination hides exposed piranha before exit frame",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "exit finishes safely with piranha still hidden",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pixel preview 1-1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pixel preview 2-2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pixel preview 4-4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pixel preview 8-4d",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}
