@@ -33,11 +33,13 @@ def source_files(directory):
                 yield Path(entry.path)
 for folder in ['Scripts', 'Scenes', 'Data', 'Assets', 'Tools', 'Reports', 'Licenses']:
     inputs.extend(source_files(root / folder))
+inputs.extend(source_files(root / 'addons/mario_raw_export'))
 inputs.sort(key=lambda p: str(p.relative_to(root)))
 assert all(p.is_relative_to(root) for p in inputs)
 # All recursive inputs came from non-symlink directory entries below root.
 assert not any(p.is_symlink() for p in inputs if p.parent == root)
-assert not any(p.suffix in ['.gd', '.dll'] or '.godot' in p.parts or 'addons' in p.parts for p in inputs)
+assert not any(p.suffix == '.dll' or '.godot' in p.parts or 'dsh_godot' in p.parts for p in inputs)
+assert any(p == root / 'addons/mario_raw_export/plugin.cfg' for p in inputs)
 buffer = io.BytesIO()
 with zipfile.ZipFile(buffer, 'w', compression=zipfile.ZIP_DEFLATED, compresslevel=6) as z:
     for path in inputs:

@@ -4,16 +4,16 @@
   "hostAbiVersion": 4,
   "managedVersion": "4.7.2-ohos.3",
   "architecture": "arm64-v8a",
-  "engineLibrarySha256": "6ecad4511e0e824f355fff0e3c074962ad25842ee5ccb76b97f0410955418aba",
+  "engineLibrarySha256": "dbbe719491facc66693ba25a12400919375bca57f9fff825c0ce24f7dc3b90d0",
   "packageName": "godot-editor",
-  "packageVersion": "4.7.2-ohos.7",
+  "packageVersion": "4.7.2-ohos.8",
   "headless": "bin/godot",
   "managedRoot": "share/godot",
   "templatesRoot": "share/godot/templates",
-  "templateSetSha256": "32484da5180020ccd00bc36c173fefdeb70afdc649d003ca75c923b1f829dc15",
+  "templateSetSha256": "cbab139902d78d807ebd764f7930a62c16a29298e1be641d069f6b2928cbdada",
   "templateSha256": {
-    "openharmony_debug_arm64-v8a.zip": "82c8c8c9ca2d9c3582f3ab6984bbde1f1a936ad68ad55fc5cca7f99a1bf73f39",
-    "openharmony_release_arm64-v8a.zip": "3dfa98fdd51b3ab80f3b19a71eb812c917e55a437319622cc99602ca61228eac"
+    "openharmony_debug_arm64-v8a.zip": "252a644b6988d794c1d9f434e46606e88b6312474ca650f6c6e5108c22d10457",
+    "openharmony_release_arm64-v8a.zip": "52d3900d92af76ce533fd17f16ca71c0d27464e72830ffb824be0aa94c73017b"
   },
   "godotPackages": [
     "Godot.NET.Sdk.4.7.2-ohos.3.nupkg",
@@ -45,11 +45,11 @@
   },
   "nativeBuild": {
     "platform": "ohos",
-    "engine_version": "4.7.2.stable.mono.custom_build.bd5e41cdf",
-    "source_commit": "bd5e41cdf5c9e300f67e29689e4fa9fdb6b2d990",
+    "engine_version": "4.7.2.stable.mono.custom_build.a4edc48cb",
+    "source_commit": "a4edc48cb902a4e59e81e9a6fbfe42dc96279187",
     "openharmony_host_abi": 4,
     "source_tree_clean": true,
-    "godot_sha256": "36cee54e9f6adcc0b75744f81bc282758523f45c7c5b1058b71fdb33a7d2fed3",
-    "libgodot.so_sha256": "6ecad4511e0e824f355fff0e3c074962ad25842ee5ccb76b97f0410955418aba"
+    "godot_sha256": "da6781c8272f5ffdd188cd97281d0ec77da27640f6af215c9fe6887baba67c33",
+    "libgodot.so_sha256": "dbbe719491facc66693ba25a12400919375bca57f9fff825c0ce24f7dc3b90d0"
   }
 }

@@ -17,21 +17,22 @@
 | 返回 | Esc、菜单中的 K | B |
 | 静音 | M | — |
 
-支持向左回走、双向跟随相机、32 关选关、本地进度及最高分。K＋长按 J 的跳高约 65 像素；TIME 每秒减少 1.5 单位；蘑菇和花变身时暂停场景 0.72 秒。最新版本修正了金币 1.5 格/半格弹跳、进出管道食人花隐藏和旗杆底座遮挡。
+支持向左回走、双向跟随相机、32 关选关、本地进度及最高分。K＋长按 J 的跳高约 65 像素；TIME 每秒减少 1.5 单位；蘑菇和花变身时暂停场景 0.72 秒。v0.1.2 修复了普通编辑器导出遗漏素材的问题，并将手机虚拟按键移至游戏画面两侧。
 
 ## 手机虚拟按钮
 
 启动时通过鸿蒙公共 NDK `OH_GetDeviceType()` 读取真实设备类型：手机 `phone` 自动显示虚拟按钮；触屏电脑 `2in1`、平板及未知设备均默认隐藏。不会用“支持触摸屏”冒充手机检测。
 
+- 手机横屏时游戏画面居中，左右预留独立操作区；方向键放在左侧，RUN/JUMP 放在右侧，不覆盖游戏画面。
 - 左侧四向方向键用于移动、蹲下、进管道和爬藤蔓。
 - 右侧 RUN 负责冲刺/火球，JUMP 负责跳跃/游泳；右拇指从 RUN 滑到 JUMP 可保持冲刺，同时用左拇指控制方向。
 - 支持多指同时按住、按下反馈、快速轻点和滑动换键；抬手、触摸取消、切后台、失焦或视口改变时释放。
-- 游戏中的 II 暂停/恢复；菜单中使用方向键、OK 和 BACK，文字与选关列表为虚拟按钮留出空间。
+- 游戏中的 II 暂停/恢复；菜单中使用方向键、OK 和 BACK，标题和选关列表保持完整游戏区域，按键位于两侧。
 - 电脑可按 T 手动预览，默认继续使用键盘/手柄。
 
-原生 Editor 中的手机控件预览：
+在原生 Editor 中按 T 可预览左右侧操作区；再次按 T 恢复桌面画面。v0.1.2 的无窗口检查 805/805 通过，原生 Editor / Vulkan 检查 872/872 通过，其中触控专项 100/100 通过。普通 Editor 和发布 HAP 中的原始素材 1491 个文件均已逐字节核对；PCK 含 1527 个条目，CHR 为正确的 8192 字节。
 
-![手机虚拟按钮](Reports/Regression/phone-virtual-controls.png)
+![左右侧虚拟按键的实际 GPU 截图](Reports/Regression/phone-sidebars-v0.1.2.png)
 
 ## 在 Editor 运行
 
@@ -46,17 +47,28 @@ dotnet build --no-restore
 
 ## 导出未签名 HAP
 
-本机导出工具链为 Godot `4.7.2-ohos.7`、.NET SDK `10.0.401-ohos.2`、官方 Command Line Tools `26.0.0.201`。使用相互匹配的 CLI 与 ARM64 Release 模板。HAP 使用 NativeAOT，不需要设备另外安装 .NET SDK。
+本机导出工具链为 Godot `4.7.2-ohos.8`、.NET SDK `10.0.401-ohos.2`、官方 Command Line Tools `26.0.0.201`。使用相互匹配的 CLI 与 ARM64 Release 模板。HAP 使用 NativeAOT，不需要设备另外安装 .NET SDK。
 
 ```sh
-python3 Tools/export_hap.py --output dist/mario-csharp-0.1.1-arm64-unsigned.hap
+python3 Tools/export_hap.py --output dist/mario-csharp-0.1.2-arm64-unsigned.hap
 ```
 
 默认从 `~/.oheco/packages` 定位工具；其他安装位置可显式传入 `--godot-devkit`、`--dotnet-sdk`、`--command-line-tools`。脚本在独立缓存副本中构建，不修改工作工程；临时文件使用 `$TMPDIR`。本机构建器需已准备好官方 Hvigor wrapper 缓存。
 
-导出预设关闭 HAP 签名，包名 `org.kdada.mariocsharp`，兼容 API 26。安装前需要自行签名。直接读取的 PNG、JSON、音频与 CHR 由构建专用导出插件按原字节打包；游戏运行时代码仍全部为 C#。导出副本不包含 DSH 调试助手。
+导出预设关闭 HAP 签名，包名 `org.kdada.mariocsharp`，兼容 API 26。安装前需要自行签名。游戏运行时代码仍全部为 C#；导出副本不包含 DSH 调试助手。
 
-本次按要求不对 HAP 做包审计、安装或运行测试。Editor 环境的回归记录与 HAP 安装验收是不同范围。
+也可以直接在 Editor 中导出。`addons/mario_raw_export` 已作为正式项目文件提交，并在项目设置中默认启用；编辑器和脚本共用这一插件，将 PNG、JSON、音频与 CHR 按原字节打包。`Assets/.gdignore` 用于绕过素材转换，请保留它，也不要禁用 **Mario raw media export**。需要 DevEco 工程时可在导出预设中勾选仅导出工程。
+
+v0.1.2 修复了普通编辑器导出遗漏整个素材目录的问题：原先插件只由脚本临时创建，且 `addons/` 被版本控制忽略。没有素材的 PCK 会导致首次启动时字体解码报 `CHR tile out of range`。
+
+脚本会逐个核对 PCK 中的原始素材字节和导出清单，并确认 `smb1.chr` 为正确的 8192 字节。对手动导出的 HAP、PCK 或 DevEco 工程也可运行：
+
+```sh
+python3 Tools/verify_export_resources.py dist/mario-csharp-0.1.2-arm64-unsigned.hap
+python3 Tools/verify_export_resources.py /path/to/deveco-project
+```
+
+`python3 Tools/check_export_plugin.py` 会通过普通 Editor 导出路径检查素材完整性，并验证禁用插件时生成的缺素材 PCK 会被拒绝。
 
 ## 源码与素材
 

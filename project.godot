@@ -23,10 +23,15 @@ window/size/viewport_height=240
 window/size/window_width_override=1024
 window/size/window_height_override=960
 window/stretch/mode="viewport"
+window/handheld/orientation=0
 
 [dotnet]
 
 project/assembly_name="Mario"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/mario_raw_export/plugin.cfg")
 
 [rendering]
 

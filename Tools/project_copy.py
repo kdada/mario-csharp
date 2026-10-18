@@ -1,6 +1,35 @@
 """Strip local editor-control wiring from portable game copies and archives."""
 import json
 import re
+import shutil
+from pathlib import Path
+
+
+RAW_EXPORT_PLUGIN = 'res://addons/mario_raw_export/plugin.cfg'
+
+
+def copy_raw_export_plugin(source: Path, destination: Path) -> None:
+    """Keep the game's required export plugin in every portable project copy."""
+    relative = Path('addons/mario_raw_export')
+    shutil.copytree(source / relative, destination / relative, dirs_exist_ok=True,
+                    ignore=shutil.ignore_patterns('*.uid', '*.import', '__pycache__'))
+
+
+def enable_raw_export_plugin(text: str) -> str:
+    if RAW_EXPORT_PLUGIN in text:
+        return text
+    match = re.search(r'(?ms)^\[editor_plugins\]\n(.*?)(?=^\[|\Z)', text)
+    if match:
+        section = match.group(0)
+        enabled = re.search(r'(?m)^enabled=PackedStringArray\((.*?)\)$', section)
+        if enabled:
+            paths = re.findall(r'"([^"\n]+)"', enabled.group(1)) + [RAW_EXPORT_PLUGIN]
+            replacement = 'enabled=PackedStringArray(' + ', '.join(json.dumps(p) for p in paths) + ')'
+            section = section[:enabled.start()] + replacement + section[enabled.end():]
+        else:
+            section += '\nenabled=PackedStringArray(' + json.dumps(RAW_EXPORT_PLUGIN) + ')\n'
+        return text[:match.start()] + section + text[match.end():]
+    return text.rstrip() + '\n\n[editor_plugins]\nenabled=PackedStringArray(' + json.dumps(RAW_EXPORT_PLUGIN) + ')\n'
 
 
 def game_project_text(text: str) -> str:

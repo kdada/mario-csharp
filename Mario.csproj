@@ -6,7 +6,11 @@
     <Nullable>enable</Nullable>
     <LangVersion>latest</LangVersion>
     <RootNamespace>MarioStudy</RootNamespace>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Scripts/**/*.cs" />
+  </ItemGroup>
   <PropertyGroup Condition="'$(GodotTargetPlatform)' == 'openharmony' and ('$(Configuration)' == 'ExportDebug' or '$(Configuration)' == 'ExportRelease')">
     <!-- Godot retains/signs deployment copies; avoid a second SDK signing pass. -->
     <OpenHarmonyCodesignEnabled>false</OpenHarmonyCodesignEnabled>

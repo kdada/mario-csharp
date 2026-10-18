@@ -5,7 +5,7 @@ __pycache__/
 *.pyc
 *.user
 *.userprefs
-addons/
+addons/dsh_godot/
 dist/
 Deliverables/
 *.hap

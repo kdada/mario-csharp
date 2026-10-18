@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "pck_entries": 1497,
+  "raw_files": 1491,
+  "raw_groups": {
+    "Assets": 1488,
+    "Data": 3
+  },
+  "chr_bytes": 8192,
+  "chr_sha256": "6ae7ffd9795d670954b76c19706d4f355b53f49c38a1da14027faee2c9266f10",
+  "missing": [],
+  "changed": [],
+  "raw_manifest_matches_source": true,
+  "missing_plugin_export_rejected": true,
+  "missing_plugin_error": "Game resources missing=1488, changed=0; missing examples=['Assets/Sprites/Backgrounds/BeachWater.png', 'Assets/Sprites/Backgrounds/BooMenuBG.png', 'Assets/Sprites/Backgrounds/ChallengeCastleResults.png', 'Assets/Sprites/Backgrounds/ChallengeResults.png', 'Assets/Sprites/Backgrounds/DiscoToadOverlay.png', 'Assets/Sprites/Backgrounds/Lighting.png', 'Assets/Sprites/Backgrounds/RaceGrid.png', 'Assets/Sprites/Backgrounds/SpotLight.png', 'Assets/Sprites/Backgrounds/TopEdge.json', 'Assets/Sprites/Backgrounds/TopEdge.png', 'Assets/Sprites/Backgrounds/Bushes/AirshipBush.png', 'Assets/Sprites/Backgrounds/Bushes/AirshipBushLL.png'], changed examples=[]",
+  "route": "ordinary Editor export-pack with checked-in plugin; no export_hap injection"
+}

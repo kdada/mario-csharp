@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "artifact": "mario-csharp-0.1.2-arm64-unsigned.hap",
+  "pck_entries": 1527,
+  "raw_files": 1491,
+  "raw_groups": {
+    "Assets": 1488,
+    "Data": 3
+  },
+  "chr_bytes": 8192,
+  "chr_sha256": "6ae7ffd9795d670954b76c19706d4f355b53f49c38a1da14027faee2c9266f10",
+  "missing": [],
+  "changed": [],
+  "raw_manifest_matches_source": true
+}

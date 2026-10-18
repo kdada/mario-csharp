@@ -5,6 +5,11 @@ namespace MarioStudy;
 public partial class Game
 {
     private Vector2 View(Vector2 position) => (position + new Vector2(-CameraX, 208)).Round();
+    private void SetGameDrawTransform(Vector2 offset)
+    {
+        float scale = GameScreenScale;
+        DrawSetTransform(GameScreenOrigin + offset * scale, scale: Vector2.One * scale);
+    }
     public override void _Draw()
     {
         if (World == null || Art == null) return;
@@ -14,11 +19,12 @@ public partial class Game
             Art.Theme = World.Theme;
             bool dark = World.Theme is "Castle" or "Underground" or "CastleWater" || Maps.IsNight(World.Data.Id, MainId);
             Color sky = dark || State == Screen.Intro ? Colors.Black : new Color("5c94fc");
+            SetGameDrawTransform(Vector2.Zero);
             DrawRect(new Rect2(0, 0, 256, 240), sky);
             bool menu = State is Screen.Select or Screen.Help or Screen.GameOver or Screen.Ending;
             if (!menu && State != Screen.Intro)
             {
-                DrawSetTransform(new Vector2(-MathF.Round(CameraX), 208));
+                SetGameDrawTransform(new Vector2(-MathF.Round(CameraX), 208));
                 DrawScenery();
                 foreach (var plant in World.Enemies.Where(e => e.Kind == "PiranhaPlant" && !e.Removed && e.Active)) DrawEnemy(plant);
                 if (pipeClock > 0) DrawPlayer();
@@ -35,7 +41,7 @@ public partial class Game
                     else if (popup.Debris) Art.Tile(this, TerrainPath(), popup.Position, 0, 8, 8);
                     else Art.Text(this, popup.Text, popup.Position);
                 }
-                DrawSetTransform(Vector2.Zero);
+                SetGameDrawTransform(Vector2.Zero);
             }
             DrawHud();
             switch (State)
@@ -52,8 +58,8 @@ public partial class Game
                 case Screen.GameOver:
                     Art.Text(this, "GAME OVER", new(88, 104)); Art.Text(this, showTouch ? "OK TO TITLE" : "ENTER TO TITLE", new(showTouch ? 84 : 72, 144)); break;
                 case Screen.Ending:
-                    Art.Sprite(this, "Players/Mario/Big.png", new(104, showTouch ? 96 : 112)); Art.Sprite(this, "Players/Peach.png", new(152, showTouch ? 96 : 112));
-                    Art.Text(this, "THANK YOU MARIO!", new(64, showTouch ? 110 : 136)); Art.Text(this, "YOUR QUEST IS OVER.", new(48, showTouch ? 130 : 160)); Art.Text(this, "ALL 8 WORLDS CLEARED!", new(40, showTouch ? 144 : 184)); Art.Text(this, showTouch ? "OK TO TITLE" : "ENTER TO TITLE", new(showTouch ? 84 : 72, showTouch ? 162 : 216)); break;
+                    Art.Sprite(this, "Players/Mario/Big.png", new(104, 112)); Art.Sprite(this, "Players/Peach.png", new(152, 112));
+                    Art.Text(this, "THANK YOU MARIO!", new(64, 136)); Art.Text(this, "YOUR QUEST IS OVER.", new(48, 160)); Art.Text(this, "ALL 8 WORLDS CLEARED!", new(40, 184)); Art.Text(this, showTouch ? "OK TO TITLE" : "ENTER TO TITLE", new(showTouch ? 84 : 72, 216)); break;
                 case Screen.Help: DrawHelp(); break;
             }
             if (State == Screen.Clear && message == "CASTLE" && StateClock > 3.5f)
@@ -62,6 +68,8 @@ public partial class Game
                 Art.Text(this, LevelIndex == 31 ? "THANK YOU MARIO!" : "THANK YOU MARIO!\nBUT OUR PRINCESS IS IN\nANOTHER CASTLE!", new(24, 68));
             }
 
+            DrawSetTransform(Vector2.Zero);
+            DrawPhoneBorders();
             DrawTouchControls();
             FinishStudyFrame();
         }
@@ -217,11 +225,11 @@ public partial class Game
     private void DrawTitle()
     {
         var logo = Art.Texture("UI/TitleSMB1.png");
-        DrawTextureRectRegion(logo, showTouch ? new Rect2(64, 32, 128, 64) : new Rect2(40, 32, 176, 88), new Rect2(0, 0, 176, 88));
-        Art.Text(this, "C# STUDY EDITION", new(64, showTouch ? 102 : 126), new Color("ffcc88"));
+        DrawTextureRectRegion(logo, new Rect2(40, 32, 176, 88), new Rect2(0, 0, 176, 88));
+        Art.Text(this, "C# STUDY EDITION", new(64, 126), new Color("ffcc88"));
         string[] options = ["NEW GAME", "CONTINUE", "LEVEL SELECT", "CONTROLS"];
-        for (int i = 0; i < options.Length; i++) Art.Text(this, (titleChoice == i ? "* " : "  ") + options[i], showTouch ? new(80, 118 + i * 13) : new(64, 146 + i * 16));
-        Art.Text(this, "TOP-" + profile.HighScore.ToString("D6"), new(80, showTouch ? 174 : 218));
+        for (int i = 0; i < options.Length; i++) Art.Text(this, (titleChoice == i ? "* " : "  ") + options[i], new(64, 146 + i * 16));
+        Art.Text(this, "TOP-" + profile.HighScore.ToString("D6"), new(80, 218));
     }
     private void DrawLevelSelect()
     {
@@ -229,11 +237,11 @@ public partial class Game
         for (int w = 0; w < 8; w++)
             for (int l = 0; l < 4; l++)
             {
-                int i = w * 4 + l; Vector2 at = showTouch ? new(66 + l * 44, 76 + w * 11) : new(40 + l * 52, 86 + w * 14);
+                int i = w * 4 + l; Vector2 at = new(40 + l * 52, 86 + w * 14);
                 if (selectChoice == i) DrawRect(new Rect2(at - new Vector2(4, 2), new Vector2(36, 12)), new Color("b53120"));
                 Art.Text(this, Maps.MainLevels[i], at, profile.Completed[i] ? new Color("80d010") : Colors.White);
             }
-        if (showTouch) Art.Text(this, "OK PLAY  BACK", new(96, 167));
+        if (showTouch) Art.Text(this, "OK PLAY  BACK", new(80, 218));
         else { Art.Text(this, "ARROWS SELECT  J PLAY", new(40, 210)); Art.Text(this, "ESC BACK", new(96, 226)); }
     }
     private void DrawPause()
@@ -248,6 +256,6 @@ public partial class Game
         Art.Text(this, showTouch
             ? "ARROWS - MOVE / CLIMB\nDOWN - DUCK / PIPE\nJUMP - JUMP / SWIM\nRUN - RUN / FIREBALL\nII - PAUSE\nHOLD RUN AND JUMP\nFOR A LONGER JUMP"
             : "A D - MOVE\nJ - JUMP / SWIM\nK - RUN / FIREBALL\nS DOWN - DUCK / PIPE\nW UP - CLIMB VINE\nENTER ESC - PAUSE\nM - MUTE\nF11 - FULLSCREEN\nF12 - SCREENSHOT", new(32, 72));
-        Art.Text(this, showTouch ? "BACK TO TITLE" : "ENTER TO TITLE", new(72, showTouch ? 146 : 220));
+        Art.Text(this, showTouch ? "BACK TO TITLE" : "ENTER TO TITLE", new(72, 220));
     }
 }

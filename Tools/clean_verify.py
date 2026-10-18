@@ -5,7 +5,7 @@ import os
 import shutil
 import subprocess
 import tempfile
-from project_copy import game_project_text
+from project_copy import game_project_text, copy_raw_export_plugin
 
 root = Path(__file__).resolve().parents[1]
 reports = root / 'Reports'
@@ -18,6 +18,7 @@ with tempfile.TemporaryDirectory(prefix='mario-clean-', dir=temp_base) as direct
     project = Path(directory).resolve()
     assert project.parent == temp_base and project.name.startswith('mario-clean-')
     (project / 'project.godot').write_text(game_project_text((root / 'project.godot').read_text()))
+    copy_raw_export_plugin(root, project)
     for name in ['Mario.csproj', 'NuGet.Config']:
         shutil.copyfile(root / name, project / name)
     for name in ['Scripts', 'Scenes']:

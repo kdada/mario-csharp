@@ -4,16 +4,18 @@ import argparse
 import datetime
 import json
 import os
+import re
 import shutil
 import subprocess
 import tempfile
-from project_copy import game_project_text
+from project_copy import game_project_text, copy_raw_export_plugin, enable_raw_export_plugin
+from verify_export_resources import verify_export_resources
 
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     packages = Path.home() / '.oheco/packages'
-    parser.add_argument('--godot-devkit', type=Path, default=packages / 'godot-editor/4.7.2-ohos.7')
+    parser.add_argument('--godot-devkit', type=Path, default=packages / 'godot-editor/4.7.2-ohos.8')
     parser.add_argument('--dotnet-sdk', type=Path, default=packages / 'dotnet-sdk/10.0.401-ohos.2')
     parser.add_argument('--command-line-tools', type=Path, default=packages / 'command-line-tools/26.0.0.201')
     parser.add_argument('--output', type=Path, required=True)
@@ -38,21 +40,21 @@ def main():
             raise SystemExit('Missing export input: ' + str(required))
     feed = devkit / 'share/godot/GodotSharp/Tools/nupkgs'
     (work / 'NuGet.Config').write_text('<?xml version="1.0"?><configuration><packageSources><clear/><add key="Godot-OpenHarmony" value="' + str(feed) + '"/></packageSources></configuration>\n')
-    # Original assets are intentionally ignored by Godot's import pipeline.
-    # Inject their raw bytes into the PCK with a build-only editor plugin.
-    plugin = work / 'addons/mario_raw_export'
-    plugin.mkdir(parents=True)
-    shutil.copy2(project / 'Tools/export_assets.gd', plugin / 'plugin.gd')
-    (plugin / 'plugin.cfg').write_text('[plugin]\nname="Mario raw media export"\ndescription="Pack directly-read game media"\nauthor="kdada"\nversion="1.0"\nscript="plugin.gd"\n')
-    text = game_project_text((project / 'project.godot').read_text())
-    text += '\n[editor_plugins]\nenabled=PackedStringArray("res://addons/mario_raw_export/plugin.cfg")\n'
+    # Use the same checked-in, enabled plugin as ordinary Editor exports.
+    # Do not generate a second private plugin or duplicate editor_plugins sections.
+    copy_raw_export_plugin(project, work)
+    text = enable_raw_export_plugin(game_project_text((project / 'project.godot').read_text()))
     (work / 'project.godot').write_text(text)
     preset = (project / 'export_presets.cfg').read_text()
     for mode in ('debug', 'release'):
         template = devkit / f'share/godot/templates/openharmony_{mode}_arm64-v8a.zip'
         if not template.is_file():
             raise SystemExit('Missing template: ' + str(template))
-        preset = preset.replace(f'custom_template/{mode}=""', f'custom_template/{mode}=' + json.dumps(str(template)))
+        preset = re.sub(r'(?m)^custom_template/' + mode + r'=.*$',
+                        'custom_template/' + mode + '=' + json.dumps(str(template)), preset)
+    # Editor users may select DevEco-project-only export; this command produces a HAP.
+    preset = re.sub(r'(?m)^build/export_project_only=.*$', 'build/export_project_only=false', preset)
+    preset = re.sub(r'(?m)^build/override_project_dir=.*$', 'build/override_project_dir=false', preset)
     (work / 'export_presets.cfg').write_text(preset)
     output.parent.mkdir(parents=True, exist_ok=True)
     env = dict(os.environ)
@@ -71,7 +73,6 @@ def main():
     commands = [
         [str(sdk / 'bin/dotnet'), 'restore', '--configfile', 'NuGet.Config'],
         [str(sdk / 'bin/dotnet'), 'build', '--no-restore'],
-        [str(devkit / 'bin/godot'), '--headless', '--editor', '--path', str(work), '--import', '--quit'],
         [str(devkit / 'bin/godot'), '--headless', '--path', str(work), '--export-release', 'OpenHarmony HAP (Unsigned)', str(output)],
     ]
     print('EXPORT_CACHE ' + str(cache), flush=True)
@@ -87,6 +88,9 @@ def main():
                 raise SystemExit(result.returncode)
     if not output.is_file():
         raise SystemExit('Exporter returned success but did not create the requested HAP.')
+    report = verify_export_resources(output, project)
+    (cache / 'raw-resources.json').write_text(json.dumps(report, ensure_ascii=False, indent=2) + '\n')
+    print('RAW_RESOURCES_VERIFIED ' + str(report['raw_files']), flush=True)
     print('UNSIGNED_HAP ' + str(output), flush=True)
     print('HAP_BYTES ' + str(output.stat().st_size), flush=True)
 

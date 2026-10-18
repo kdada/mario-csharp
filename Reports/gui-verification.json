@@ -3,7 +3,7 @@
   "platform": "OpenHarmony",
   "display": "OpenHarmony",
   "renderingDriver": "vulkan",
-  "timestamp": "2026-10-18T10:19:04.1132553+00:00",
+  "timestamp": "2026-10-18T15:25:07.725074+00:00",
   "failures": 0,
   "checks": [
     {
@@ -3872,6 +3872,216 @@
       "detail": "2in1"
     },
     {
+      "name": "phone game remains centered 512x240",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone game preserves NES aspect 512x240",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone controls stay inside viewport 512x240",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone controls never cover game 512x240",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "directions use left sidebar 512x240",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "actions and pause use right sidebar 512x240",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "running jump bridge stays outside game 512x240",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone game remains centered 1280x720",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone game preserves NES aspect 1280x720",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone controls stay inside viewport 1280x720",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone controls never cover game 1280x720",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "directions use left sidebar 1280x720",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "actions and pause use right sidebar 1280x720",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "running jump bridge stays outside game 1280x720",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone game remains centered 2340x1080",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone game preserves NES aspect 2340x1080",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone controls stay inside viewport 2340x1080",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone controls never cover game 2340x1080",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "directions use left sidebar 2340x1080",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "actions and pause use right sidebar 2340x1080",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "running jump bridge stays outside game 2340x1080",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone game remains centered 1920x1080",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone game preserves NES aspect 1920x1080",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone controls stay inside viewport 1920x1080",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone controls never cover game 1920x1080",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "directions use left sidebar 1920x1080",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "actions and pause use right sidebar 1920x1080",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "running jump bridge stays outside game 1920x1080",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone game remains centered 1024x768",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone game preserves NES aspect 1024x768",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone controls stay inside viewport 1024x768",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone controls never cover game 1024x768",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "directions use left sidebar 1024x768",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "actions and pause use right sidebar 1024x768",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "running jump bridge stays outside game 1024x768",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone game remains centered 240x512",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone game preserves NES aspect 240x512",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone controls stay inside viewport 240x512",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone controls never cover game 240x512",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "directions use left sidebar 240x512",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "actions and pause use right sidebar 240x512",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "running jump bridge stays outside game 240x512",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "name": "desktop touchscreen stays without virtual controls",
       "passed": true,
       "detail": ""
@@ -3888,6 +4098,41 @@
     },
     {
       "name": "round button corners do not activate",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "drawn button center hits same button 0",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "drawn button center hits same button 1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "drawn button center hits same button 2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "drawn button center hits same button 3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "drawn button center hits same button 4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "drawn button center hits same button 5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "drawn button center hits same button 6",
       "passed": true,
       "detail": ""
     },
@@ -3937,6 +4182,11 @@
       "detail": ""
     },
     {
+      "name": "untracked cancel preserves another finger short tap",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "name": "sliding off releases direction",
       "passed": true,
       "detail": ""
@@ -3973,6 +4223,26 @@
     },
     {
       "name": "window defocus releases jump",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "viewport resize clears held buttons and pending edges",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "old drag after resize cannot reacquire a button",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "T preview disable releases all buttons",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "T preview enables sidebar presentation",
       "passed": true,
       "detail": ""
     },
@@ -4027,17 +4297,22 @@
       "detail": ""
     },
     {
+      "name": "canceling running jump releases both actions",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "name": "virtual buttons drive actual running jump",
       "passed": true,
       "detail": "x=125.3, height=65.0"
     },
     {
-      "name": "GPU phone has visible virtual buttons",
+      "name": "GPU phone sidebars leave complete game frame unchanged",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "GPU virtual buttons keep HUD clear",
+      "name": "GPU left sidebar contains visible direction control",
       "passed": true,
       "detail": ""
     },

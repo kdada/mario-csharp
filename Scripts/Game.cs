@@ -69,6 +69,7 @@ public partial class Game : Node2D
     }
     public override void _ExitTree()
     {
+        TeardownTouchControls();
         if (Maps != null) SaveProfile();
         Sound?.Dispose(); Art?.Dispose(); studyRaster?.Dispose();
     }
@@ -82,6 +83,7 @@ public partial class Game : Node2D
     private bool Touch(int zone) => showTouch && touches.Values.Any(value => value == zone || value == TouchRunJump && zone is TouchRun or TouchJump);
     private Controls ReadControls()
     {
+        SyncTouchWindowSize();
         float axis = (KeyDown(Key.Right) || KeyDown(Key.D) || Touch(1) || Joy(JoyButton.DpadRight) ? 1 : 0) - (KeyDown(Key.Left) || KeyDown(Key.A) || Touch(0) || Joy(JoyButton.DpadLeft) ? 1 : 0);
         float stick = Input.GetJoyAxis(0, JoyAxis.LeftX);
         if (axis == 0 && MathF.Abs(stick) > .25f) axis = MathF.Sign(stick);
@@ -107,7 +109,7 @@ public partial class Game : Node2D
             Key key = k.PhysicalKeycode;
             if (key == Key.None) key = k.Keycode;
             if (key == Key.M) { Sound.ToggleMute(); return; }
-            if (key == Key.T) { showTouch = !showTouch; ReleaseTouchControls(); return; }
+            if (key == Key.T) { SetTouchPresentation(!showTouch); return; }
             if (key == Key.F11)
             {
                 var mode = DisplayServer.WindowGetMode();

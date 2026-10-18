@@ -3,7 +3,7 @@ from pathlib import Path
 import argparse
 import json
 import shutil
-from project_copy import game_project_text
+from project_copy import game_project_text, copy_raw_export_plugin
 
 parser = argparse.ArgumentParser(description=__doc__)
 parser.add_argument('destination', type=Path)
@@ -20,6 +20,7 @@ for folder in ('Scripts', 'Scenes', 'Assets', 'Data', 'Licenses', 'Tools'):
 for name in ('Mario.csproj', 'Mario.sln', 'export_presets.cfg'):
     shutil.copy2(source / name, destination / name)
 (destination / 'project.godot').write_text(game_project_text((source / 'project.godot').read_text()))
+copy_raw_export_plugin(source, destination)
 (destination / 'global.json').write_text('{"sdk":{"version":"10.0.401","rollForward":"latestPatch"}}\n')
 (destination / '.gitignore').write_text(''' .godot/
 bin/
@@ -28,7 +29,7 @@ __pycache__/
 *.pyc
 *.user
 *.userprefs
-addons/
+addons/dsh_godot/
 dist/
 Deliverables/
 *.hap
@@ -42,7 +43,7 @@ local.properties
 '''.lstrip())
 feed = destination / 'ThirdParty/GodotNuGet'
 feed.mkdir(parents=True)
-devkit = Path.home() / '.oheco/packages/godot-editor/4.7.2-ohos.7'
+devkit = Path.home() / '.oheco/packages/godot-editor/4.7.2-ohos.8'
 manifest = json.loads((devkit / 'godot-devkit.json').read_text())
 for name in manifest['godotPackages']:
     shutil.copy2(devkit / 'share/godot/GodotSharp/Tools/nupkgs' / name, feed / name)
