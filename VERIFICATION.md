@@ -2,9 +2,11 @@
 
 ## Editor / JIT
 
-- 当前机制回归：709/709，通过，构建无警告或错误。记录见 [verification.json](Reports/verification.json)。
-- 原生 OpenHarmony / Vulkan 回归：772/772，通过；包含实际 GPU 帧的精灵位置、金币高度、管道食人花隐藏和旗杆底座遮挡。记录见 [gui-verification.json](Reports/gui-verification.json)。
-- NativeAOT 所需地图与存档 JSON 已改用预生成序列化上下文，并在 Editor/JIT 的 709 项回归中验证。
+- 当前机制回归：750/750，通过，构建无警告或错误。记录见 [verification.json](Reports/verification.json)。
+- 原生 OpenHarmony / Vulkan 回归：817/817，通过；包含实际 GPU 帧、手机按键显示/按下反馈及菜单排布。记录见 [gui-verification.json](Reports/gui-verification.json)。
+- 手机控件专项：headless 41 项、Vulkan 45 项，覆盖 phone/2in1 分类、多指组合、快速轻点、双拇指跑跳、滑动/取消/失焦释放、菜单方向与确认返回、HUD 不遮挡。记录见 [phone-touch-controls.json](Reports/Regression/phone-touch-controls.json)。
+- 当前电脑经系统 NDK 及游戏 C# 均返回 `2in1`，默认不显示虚拟按钮。手机 UI 在本机原生窗口中手动启用并直接向游戏处理器传入 Godot 触摸事件验证；不等同于在实体手机上用手指操作的验收。
+- NativeAOT 所需地图与存档 JSON 使用预生成序列化上下文。
 
 ## HAP
 

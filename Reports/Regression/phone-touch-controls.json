@@ -1,0 +1,232 @@
+{
+  "deviceType": "2in1",
+  "display": "OpenHarmony",
+  "failures": 0,
+  "checks": [
+    {
+      "name": "phone-only device policy phone",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone-only device policy  PHONE ",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone-only device policy 2in1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone-only device policy pc",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone-only device policy tablet",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone-only device policy default",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone-only device policy unknown",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone-only device policy ",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "system device type query",
+      "passed": true,
+      "detail": "2in1"
+    },
+    {
+      "name": "desktop touchscreen stays without virtual controls",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "gameplay tap outside buttons has no action",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "HUD tap does not pause",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "round button corners do not activate",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "three fingers move run and jump together",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "held buttons do not repeat press edges",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "jump release preserves movement and run",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "second finger on jump does not retrigger",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "one jump finger can lift while another holds",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "all lifted buttons release",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "short tap survives between physics frames",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "short fire tap survives between physics frames",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "canceled jump does not fire",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "sliding off releases direction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "sliding back changes direction",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "orphan drag cannot stick a button",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "down supports crouching and pipes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "up supports vine climbing",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "focus loss releases all touch state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "application pause releases fire",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "window defocus releases jump",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pause button pauses and clears gameplay fingers",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pause button resumes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone title navigates down",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone title navigates up",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone OK opens level select",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone level select uses both axes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone BACK returns to title",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone OK leaves help",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "right thumb keeps run across button gap",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "two thumbs combine move run and jump",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "virtual buttons drive actual running jump",
+      "passed": true,
+      "detail": "x=125.3, height=65.0"
+    },
+    {
+      "name": "GPU phone has visible virtual buttons",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "GPU virtual buttons keep HUD clear",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "GPU held button gives feedback",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "GPU phone menus render",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

@@ -51,7 +51,7 @@ public partial class Game : Node2D
             verifying = OS.GetCmdlineUserArgs().Contains("--verify") || playthrough || hapSmoke;
             if (!verifying) LoadProfile();
             SetupInputs();
-            showTouch = DisplayServer.IsTouchscreenAvailable();
+            SetupTouchControls();
             if (OS.GetCmdlineUserArgs().FirstOrDefault(a => a.StartsWith("--level=")) is string arg)
             {
                 int idx = Array.IndexOf(Maps.MainLevels, arg[8..]); StartGame(Math.Max(0, idx), idx > 0);
@@ -79,7 +79,7 @@ public partial class Game : Node2D
     }
     private bool KeyDown(Key key) => Input.IsPhysicalKeyPressed(key);
     private bool Joy(JoyButton button) => Input.IsJoyButtonPressed(0, button);
-    private bool Touch(int zone) => touches.Values.Contains(zone);
+    private bool Touch(int zone) => showTouch && touches.Values.Any(value => value == zone || value == TouchRunJump && zone is TouchRun or TouchJump);
     private Controls ReadControls()
     {
         float axis = (KeyDown(Key.Right) || KeyDown(Key.D) || Touch(1) || Joy(JoyButton.DpadRight) ? 1 : 0) - (KeyDown(Key.Left) || KeyDown(Key.A) || Touch(0) || Joy(JoyButton.DpadLeft) ? 1 : 0);
@@ -89,26 +89,14 @@ public partial class Game : Node2D
         bool fire = KeyDown(Key.K) || Touch(3) || Joy(JoyButton.X);
         bool run = fire || Joy(JoyButton.RightShoulder);
         bool down = KeyDown(Key.Down) || KeyDown(Key.S) || Touch(2) || Joy(JoyButton.DpadDown);
-        bool up = KeyDown(Key.Up) || KeyDown(Key.W) || Joy(JoyButton.DpadUp);
-        var result = new Controls(axis, jump, jump && !jumpHeld, run, fire && !fireHeld, down, up);
-        jumpHeld = jump; fireHeld = fire;
+        bool up = KeyDown(Key.Up) || KeyDown(Key.W) || Touch(TouchUp) || Joy(JoyButton.DpadUp);
+        var result = new Controls(axis, jump, jump && !jumpHeld || showTouch && touchJumpPressed, run, fire && !fireHeld || showTouch && touchFirePressed, down, up);
+        jumpHeld = jump; fireHeld = fire; touchJumpPressed = touchFirePressed = false;
         return result;
     }
     public override void _Input(InputEvent ev)
     {
-        if (ev is InputEventScreenTouch touch)
-        {
-            showTouch = true;
-            if (touch.Pressed)
-            {
-                int zone = TouchZone(touch.Position);
-                touches[touch.Index] = zone;
-                if (State != Screen.Playing) HandleMenuKey(zone == 0 ? Key.Left : zone == 1 ? Key.Right : zone == 2 ? Key.Down : Key.Enter);
-                else if (zone == 5) TogglePause();
-            }
-            else touches.Remove(touch.Index);
-        }
-        if (ev is InputEventScreenDrag drag) touches[drag.Index] = TouchZone(drag.Position);
+        if (HandleTouchInput(ev)) return;
         if (ev is InputEventJoypadButton pad && pad.Pressed)
         {
             Key key = pad.ButtonIndex switch { JoyButton.Start => Key.Enter, JoyButton.A => Key.J, JoyButton.B => Key.Escape, JoyButton.DpadUp => Key.Up, JoyButton.DpadDown => Key.Down, JoyButton.DpadLeft => Key.Left, JoyButton.DpadRight => Key.Right, _ => Key.None };
@@ -119,7 +107,7 @@ public partial class Game : Node2D
             Key key = k.PhysicalKeycode;
             if (key == Key.None) key = k.Keycode;
             if (key == Key.M) { Sound.ToggleMute(); return; }
-            if (key == Key.T) { showTouch = !showTouch; return; }
+            if (key == Key.T) { showTouch = !showTouch; ReleaseTouchControls(); return; }
             if (key == Key.F11)
             {
                 var mode = DisplayServer.WindowGetMode();
@@ -129,7 +117,6 @@ public partial class Game : Node2D
             HandleMenuKey(key);
         }
     }
-    private int TouchZone(Vector2 at) => at.Y < 55 ? 5 : at.X < 42 ? 0 : at.X < 83 ? 1 : at.X < 120 ? 2 : at.X < 199 ? 3 : 4;
     private void HandleMenuKey(Key key)
     {
         bool accept = key is Key.J or Key.Enter;

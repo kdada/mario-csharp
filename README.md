@@ -19,6 +19,20 @@
 
 支持向左回走、双向跟随相机、32 关选关、本地进度及最高分。K＋长按 J 的跳高约 65 像素；TIME 每秒减少 1.5 单位；蘑菇和花变身时暂停场景 0.72 秒。最新版本修正了金币 1.5 格/半格弹跳、进出管道食人花隐藏和旗杆底座遮挡。
 
+## 手机虚拟按钮
+
+启动时通过鸿蒙公共 NDK `OH_GetDeviceType()` 读取真实设备类型：手机 `phone` 自动显示虚拟按钮；触屏电脑 `2in1`、平板及未知设备均默认隐藏。不会用“支持触摸屏”冒充手机检测。
+
+- 左侧四向方向键用于移动、蹲下、进管道和爬藤蔓。
+- 右侧 RUN 负责冲刺/火球，JUMP 负责跳跃/游泳；右拇指从 RUN 滑到 JUMP 可保持冲刺，同时用左拇指控制方向。
+- 支持多指同时按住、按下反馈、快速轻点和滑动换键；抬手、触摸取消、切后台、失焦或视口改变时释放。
+- 游戏中的 II 暂停/恢复；菜单中使用方向键、OK 和 BACK，文字与选关列表为虚拟按钮留出空间。
+- 电脑可按 T 手动预览，默认继续使用键盘/手柄。
+
+原生 Editor 中的手机控件预览：
+
+![手机虚拟按钮](Reports/Regression/phone-virtual-controls.png)
+
 ## 在 Editor 运行
 
 使用带 C# 的 OpenHarmony Godot 4.7.2 编辑器及配套 .NET SDK 10.0.401。工程使用 `Godot.NET.Sdk/4.7.2-ohos.3`、`net10.0`；配套 Godot NuGet 包保存在 `ThirdParty/GodotNuGet`，包源不依赖作者的个人目录。
@@ -35,7 +49,7 @@ dotnet build --no-restore
 本机导出工具链为 Godot `4.7.2-ohos.7`、.NET SDK `10.0.401-ohos.2`、官方 Command Line Tools `26.0.0.201`。使用相互匹配的 CLI 与 ARM64 Release 模板。HAP 使用 NativeAOT，不需要设备另外安装 .NET SDK。
 
 ```sh
-python3 Tools/export_hap.py --output dist/mario-csharp-0.1.0-arm64-unsigned.hap
+python3 Tools/export_hap.py --output dist/mario-csharp-0.1.1-arm64-unsigned.hap
 ```
 
 默认从 `~/.oheco/packages` 定位工具；其他安装位置可显式传入 `--godot-devkit`、`--dotnet-sdk`、`--command-line-tools`。脚本在独立缓存副本中构建，不修改工作工程；临时文件使用 `$TMPDIR`。本机构建器需已准备好官方 Hvigor wrapper 缓存。

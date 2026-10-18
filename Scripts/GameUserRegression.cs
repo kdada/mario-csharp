@@ -101,10 +101,14 @@ public partial class Game
                     Check("GPU pipe uses standing pose " + power, !OpaqueBounds(difference).HasArea());
                 }
                 pipeClock = 0; Crouching = false; Player.Grounded = true; showTouch = false;
-                using var hidden = await RegressionFrame(); showTouch = true;
+                using var hidden = await RegressionFrame();
+                using var touch = new InputEventScreenTouch { Index = 90, Position = new(226, 199), Pressed = true };
+                _Input(touch);
                 using var touched = await RegressionFrame("no-button-overlay");
+                using var release = new InputEventScreenTouch { Index = 90, Position = touch.Position, Pressed = false };
+                _Input(release);
                 using var overlay = DifferenceImage(hidden, touched);
-                Check("GPU no LRDBA overlay after touch", !OpaqueBounds(overlay).HasArea());
+                Check("GPU desktop touch does not enable phone overlay", !showTouch && !OpaqueBounds(overlay).HasArea());
             }
         }
         catch (Exception ex) { Check("user regression exception", false, ex.ToString()); }

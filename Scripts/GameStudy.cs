@@ -15,7 +15,7 @@ public partial class Game
         enemies = World.Enemies.Count(e => !e.Removed), items = World.Items.Count(i => !i.Removed), shots = World.Shots.Count(s => !s.Removed),
         isWater = World.IsWater, theme = World.Theme, renderError = lastRenderError,
         music = Sound.MusicName, musicPlaying = Sound.IsMusicPlaying, musicPaused = Sound.IsMusicPaused,
-        effectsPlaying = Sound.ActiveEffects, touch = showTouch,
+        effectsPlaying = Sound.ActiveEffects, touch = showTouch, deviceType,
         display = DisplayServer.GetName(), driver = RenderingServer.GetCurrentRenderingDriverName(),
         frames = Engine.GetFramesDrawn(), fps = Engine.GetFramesPerSecond()
     });

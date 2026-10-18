@@ -161,6 +161,7 @@ public partial class Game
             await VerifyMechanicsRegressions();
             await VerifyFollowupRegressions();
             await VerifyCoinPipeFlagRegressions();
+            await VerifyTouchControls();
             await CaptureStudyPreviews();
             WriteVerificationReport();
         }
