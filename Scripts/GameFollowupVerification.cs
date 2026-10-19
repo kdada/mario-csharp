@@ -39,7 +39,7 @@ public partial class Game
                 StartGame(id == "8-4c" ? 31 : 0, true); LoadRoom(id, false); State = Screen.Playing; pipeCooldown = 0; Invulnerable = 10;
                 var pipe = World.Triggers.FirstOrDefault(t => t.Kind == "PipeArea" && !t.Bool("exit_only") && t.Number("enter_direction") == 3);
                 if (pipe == null) continue;
-                float mouth = HorizontalPipeMouth(pipe); Player.Height = 16; Player.Position = new(mouth - Player.Width / 2 - 4, pipe.Y + 16); Player.Velocity = Vector2.Zero;
+                float mouth = HorizontalPipeMouth(pipe); Player.Height = 16; Player.Position = new(mouth - Player.Width / 2 - 4, pipe.Y + 16); Player.Velocity = Vector2.Zero; Player.Grounded = true;
                 TickTriggers(1f / 60, new Controls(1, false, false, true, false, false, false));
                 Check($"{id} side pipe rejects four pixel gap", pipeClock == 0);
                 Player.Position = new(mouth - Player.Width / 2, pipe.Y + 16);

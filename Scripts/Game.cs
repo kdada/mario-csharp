@@ -5,7 +5,7 @@ using FileAccess = Godot.FileAccess;
 namespace MarioStudy;
 
 public enum Screen { Title, Select, Playing, Pause, Intro, Dying, Clear, GameOver, Ending, Help, Transform }
-public readonly record struct Controls(float Axis, bool Jump, bool JumpPressed, bool Run, bool FirePressed, bool Down, bool Up);
+public readonly record struct Controls(float Axis, bool Jump, bool JumpPressed, bool Run, bool FirePressed, bool Down, bool Up, bool HighJump = false);
 public sealed class Profile
 {
     public int Unlocked { get; set; }
@@ -48,7 +48,9 @@ public partial class Game : Node2D
             Maps = new MapCatalog(); Art = new Art(); Sound = new Sound(this);
             bool playthrough = OS.GetCmdlineUserArgs().Contains("--playthrough");
             bool hapSmoke = OS.GetCmdlineUserArgs().Contains("--hap-smoke");
-            verifying = OS.GetCmdlineUserArgs().Contains("--verify") || playthrough || hapSmoke;
+            bool verifyInput = OS.GetCmdlineUserArgs().Contains("--verify-input");
+            bool verifyLogic = OS.GetCmdlineUserArgs().Contains("--verify-logic");
+            verifying = OS.GetCmdlineUserArgs().Contains("--verify") || playthrough || hapSmoke || verifyInput || verifyLogic;
             if (!verifying) LoadProfile();
             SetupInputs();
             SetupTouchControls();
@@ -58,9 +60,11 @@ public partial class Game : Node2D
             }
             else
             {
-                LoadRoom("1-1", false); State = Screen.Title; Sound.StopMusic();
+                LoadRoom("1-1", false); State = Screen.Title; Sound.PlayTitleMusic();
             }
-            if (hapSmoke) CallDeferred(nameof(RunHapSmoke));
+            if (verifyLogic) CallDeferred(nameof(RunLogicVerification));
+            else if (verifyInput) CallDeferred(nameof(RunControlsVerification));
+            else if (hapSmoke) CallDeferred(nameof(RunHapSmoke));
             else if (playthrough) CallDeferred(nameof(RunPlaythrough));
             else if (verifying) CallDeferred(MethodName.RunVerification);
             GD.Print($"Mario C# study ready: {Maps.MainLevels.Length} main levels, {Maps.Rooms.Count} total rooms.");
@@ -80,20 +84,30 @@ public partial class Game : Node2D
     }
     private bool KeyDown(Key key) => Input.IsPhysicalKeyPressed(key);
     private bool Joy(JoyButton button) => Input.IsJoyButtonPressed(0, button);
-    private bool Touch(int zone) => showTouch && touches.Values.Any(value => value == zone || value == TouchRunJump && zone is TouchRun or TouchJump);
+    private bool Touch(int zone) => showTouch && touches.Values.Contains(zone);
     private Controls ReadControls()
     {
         SyncTouchWindowSize();
-        float axis = (KeyDown(Key.Right) || KeyDown(Key.D) || Touch(1) || Joy(JoyButton.DpadRight) ? 1 : 0) - (KeyDown(Key.Left) || KeyDown(Key.A) || Touch(0) || Joy(JoyButton.DpadLeft) ? 1 : 0);
+        bool phone = showTouch && !TouchMenu;
+        bool right = phone && (Touch(TouchRight) || Touch(TouchRunRight));
+        bool left = phone && (Touch(TouchLeft) || Touch(TouchRunLeft));
+        float axis = (KeyDown(Key.Right) || KeyDown(Key.D) || right || Joy(JoyButton.DpadRight) ? 1 : 0) - (KeyDown(Key.Left) || KeyDown(Key.A) || left || Joy(JoyButton.DpadLeft) ? 1 : 0);
         float stick = Input.GetJoyAxis(0, JoyAxis.LeftX);
         if (axis == 0 && MathF.Abs(stick) > .25f) axis = MathF.Sign(stick);
-        bool jump = KeyDown(Key.J) || Touch(4) || Joy(JoyButton.A);
-        bool fire = KeyDown(Key.K) || Touch(3) || Joy(JoyButton.X);
-        bool run = fire || Joy(JoyButton.RightShoulder);
-        bool down = KeyDown(Key.Down) || KeyDown(Key.S) || Touch(2) || Joy(JoyButton.DpadDown);
-        bool up = KeyDown(Key.Up) || KeyDown(Key.W) || Touch(TouchUp) || Joy(JoyButton.DpadUp);
-        var result = new Controls(axis, jump, jump && !jumpHeld || showTouch && touchJumpPressed, run, fire && !fireHeld || showTouch && touchFirePressed, down, up);
-        jumpHeld = jump; fireHeld = fire; touchJumpPressed = touchFirePressed = false;
+        bool physicalJump = KeyDown(Key.J) || Joy(JoyButton.A);
+        bool physicalFire = KeyDown(Key.K) || Joy(JoyButton.X);
+        bool phoneJump = phone && (Touch(TouchJump) || Touch(TouchBigJump));
+        bool run = physicalFire || Joy(JoyButton.RightShoulder) || phone && (Touch(TouchRunLeft) || Touch(TouchRunRight));
+        bool highJump = phone && (Touch(TouchBigJump) || touchBigJumpPresses.Count > 0);
+        bool down = KeyDown(Key.Down) || KeyDown(Key.S) || phone && Touch(TouchDown) || Joy(JoyButton.DpadDown);
+        // The jump row also climbs an adjacent vine; keyboard J remains exclusively a jump button.
+        bool climb = phoneJump && World != null && World.Triggers.Any(t => t.Kind == "Vine" && MathF.Abs(Player.Position.X - t.X) < 10);
+        bool up = KeyDown(Key.Up) || KeyDown(Key.W) || climb || Joy(JoyButton.DpadUp);
+        var result = new Controls(axis, physicalJump || phoneJump,
+            physicalJump && !jumpHeld || phone && touchJumpPresses.Count > 0, run,
+            physicalFire && !fireHeld || phone && TouchFireAvailable && touchFirePresses.Count > 0, down, up, highJump);
+        jumpHeld = physicalJump; fireHeld = physicalFire;
+        touchJumpPresses.Clear(); touchBigJumpPresses.Clear(); touchFirePresses.Clear();
         return result;
     }
     public override void _Input(InputEvent ev)
@@ -148,16 +162,18 @@ public partial class Game : Node2D
         else if (State == Screen.Playing && key is Key.Enter or Key.Escape or Key.P) TogglePause();
         else if (State == Screen.Pause)
         {
-            if (key == Key.Up) pauseChoice = (pauseChoice + 3) % 4;
-            if (key == Key.Down) pauseChoice = (pauseChoice + 1) % 4;
+            if (key == Key.Up) pauseChoice = (pauseChoice + PauseOptions.Length - 1) % PauseOptions.Length;
+            if (key == Key.Down) pauseChoice = (pauseChoice + 1) % PauseOptions.Length;
             if (back || key == Key.P) TogglePause();
             else if (accept)
                 switch (pauseChoice)
                 {
                     case 0: TogglePause(); break;
                     case 1: Sound.Pause(false); BeginLevel(LevelIndex); break;
-                    case 2: Sound.Pause(false); State = Screen.Select; selectChoice = LevelIndex; break;
+                    case 2: ResetPipeAnimation(); Sound.Pause(false); State = Screen.Select; selectChoice = LevelIndex; break;
                     case 3: ToTitle(); break;
+                    case 4 when practice: ApplyPracticePower(1); break;
+                    case 5 when practice: ApplyPracticePower(2); break;
                 }
         }
         else if ((State is Screen.GameOver or Screen.Ending or Screen.Help) && (accept || back)) ToTitle();
@@ -179,7 +195,7 @@ public partial class Game : Node2D
         if (!preserve || !roomCache.TryGetValue(id, out var room)) roomCache[id] = room = new World(Maps.Rooms[id], Maps, MainId);
         World = room; Player.Position = position ?? room.Data.Start; Player.Velocity = Vector2.Zero; Player.Grounded = false; Player.Support = null;
         Player.Height = Power > 0 ? 32 : 16; Crouching = false;
-        CameraX = MathF.Max(room.MinX, Player.Position.X - 40); CameraX = MathF.Min(CameraX, room.MaxX - 256);
+        InitializeArrivalCamera();
         pipeCooldown = 1.0f; pipeClock = 0; FacingLeft = false;
         string music = World.Theme == "CastleWater" ? "Underwater" : World.IsWater ? "Underwater" : World.Theme is "Castle" or "Underground" ? World.Theme : "Overworld";
         if (State != Screen.Title && State != Screen.Select && !verifying) Sound.Music(music);
@@ -188,7 +204,6 @@ public partial class Game : Node2D
     {
         if (World == null) return;
         float dt = MathF.Min((float)delta, 1f / 30);
-        if (State is not (Screen.Pause or Screen.Transform)) { Clock += dt; animationTime += dt; }
         Controls input = ReadControls();
         if (verifying) return;
         AdvanceState(dt, input);
@@ -196,6 +211,9 @@ public partial class Game : Node2D
     }
     private void AdvanceState(float dt, Controls input)
     {
+        // Pipe travel, pause and transformations freeze the world's animation timeline as well as its physics.
+        if (State is not (Screen.Pause or Screen.Transform) && !(State == Screen.Playing && pipeClock > 0))
+        { Clock += dt; animationTime += dt; }
         switch (State)
         {
             case Screen.Intro:
@@ -204,10 +222,16 @@ public partial class Game : Node2D
             case Screen.Playing: TickGame(dt, input); break;
             case Screen.Transform: TickPowerTransition(dt); break;
             case Screen.Dying:
+            {
+                float before = StateClock;
                 StateClock -= dt;
-                if (StateClock < 2.1f) { Player.Velocity += new Vector2(0, 900 * dt); Player.Position += Player.Velocity * dt; }
+                float motionRemaining = Sound.DeathMotionRemainingSeconds;
+                if (before > motionRemaining && StateClock <= motionRemaining) Sound.PlayDeathMusic();
+                float motionDt = MathF.Max(0, MathF.Min(before, motionRemaining) - MathF.Max(0, StateClock));
+                if (motionDt > 0) { Player.Velocity += new Vector2(0, 900 * motionDt); Player.Position += Player.Velocity * motionDt; }
                 if (StateClock <= 0) FinishDeath();
                 break;
+            }
             case Screen.Clear: TickClear(dt); break;
             case Screen.GameOver: StateClock -= dt; break;
         }
@@ -220,7 +244,7 @@ public partial class Game : Node2D
     }
     private void ToTitle()
     {
-        Sound.Pause(false); Sound.StopMusic(); State = Screen.Title; LevelIndex = 0; Power = 0; LoadRoom("1-1", false); SaveProfile();
+        Sound.Pause(false); Sound.StopMusic(); State = Screen.Title; LevelIndex = 0; Power = 0; LoadRoom("1-1", false); SaveProfile(); Sound.PlayTitleMusic();
     }
     private void LoadProfile()
     {

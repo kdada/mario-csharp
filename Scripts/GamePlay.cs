@@ -8,8 +8,9 @@ public partial class Game
     {
         if (pipeClock > 0)
         {
-            Player.Position += pipeVelocity * dt; pipeClock -= dt;
-            if (pipeClock <= 0) { var action = afterPipe; afterPipe = null; action?.Invoke(); }
+            float moveTime = MathF.Min(dt, pipeClock);
+            Player.Position += pipeVelocity * moveTime; pipeClock -= moveTime;
+            if (pipeClock <= 0) { var action = afterPipe; ResetPipeAnimation(); action?.Invoke(); }
             return;
         }
         pipeCooldown = MathF.Max(0, pipeCooldown - dt);
@@ -21,6 +22,7 @@ public partial class Game
         if (TimeLeft <= 0) { Die(); return; }
         World.UpdatePlatforms(dt);
         TickBlockTimers(dt);
+        CapturePlayerContact();
         TickPlayer(dt, input);
         if (State != Screen.Playing) return;
         TickItems(dt);
@@ -79,7 +81,7 @@ public partial class Game
         {
             if (input.JumpPressed && wasGrounded)
             {
-                Player.Velocity = new(Player.Velocity.X, JumpLaunchSpeed(input.Run, Player.Velocity.X, dt));
+                Player.Velocity = new(Player.Velocity.X, JumpLaunchSpeed(input.Run || input.HighJump, Player.Velocity.X, dt));
                 Sound.Effect(Power > 0 ? "BigJump" : "SmallJump");
             }
             float gravity = Player.Velocity.Y < 0 && input.Jump ? 570 : 1350;
@@ -93,7 +95,7 @@ public partial class Game
             Player.Position = new(vine.X, Player.Position.Y + (input.Up ? -64 : 64) * dt); Player.Velocity = Vector2.Zero;
             if (Player.Position.Y < -192 && vine.Bool("can_tele", true)) EnterCloudRoom();
         }
-        else World.Move(Player, dt, HitBlock, cornerCorrection: true);
+        else MovePlayerWithRunningGap(dt, wasGrounded, input.JumpPressed);
         if (Player.Grounded) stompCombo = 0;
         if (Power == 2 && input.FirePressed && fireCooldown == 0 && World.Shots.Count(s => !s.Enemy && !s.Removed) < 2)
         {
@@ -232,8 +234,9 @@ public partial class Game
     public void Die()
     {
         if (State != Screen.Playing) return;
-        State = Screen.Dying; StateClock = 2.8f; deathY = Player.Position.Y;
-        Player.Velocity = new(0, -270); Sound.StopMusic(); Sound.Effect("DieSting"); StarTime = 0;
+        ResetPipeAnimation();
+        State = Screen.Dying; StateClock = Sound.DeathDurationSeconds; deathY = Player.Position.Y;
+        Player.Velocity = new(0, -270); Sound.BeginDeath(); StarTime = 0;
     }
     private void FinishDeath()
     {
@@ -245,11 +248,12 @@ public partial class Game
         Sound.StopMusic(); State = Screen.Intro; StateClock = 1.65f;
     }
     private int fireworkGoal, fireworkMade;
-    private float clearBonusDoneAt = -1, clearCameraStart, clearCastleX, clearCastleY;
+    private float clearBonusDoneAt = -1, clearCameraStart, clearCastleX, clearCastleY, clearFlagTop;
     private bool clearInsideCastle;
     private void StartClear(EntityData end, bool castle)
     {
         if (State != Screen.Playing) return;
+        ResetPipeAnimation();
         State = Screen.Clear; StateClock = 0; flagX = end.X; clearStartY = Player.Position.Y;
         TimeLeft = MathF.Floor(MathF.Max(0, TimeLeft));
         int digit = (int)TimeLeft % 10; fireworkGoal = !castle && digit is 1 or 3 or 6 ? digit : 0;
@@ -271,6 +275,10 @@ public partial class Game
         {
             int height = (int)MathF.Max(0, -Player.Position.Y); int points = height > 144 ? 5000 : height > 112 ? 2000 : height > 80 ? 800 : height > 48 ? 400 : 100;
             Score += points; Popup(points.ToString(), new(flagX + 12, -140), 2);
+            clearFlagTop = World.FlagBase(end)?.Position.Y ?? end.Y - 8;
+            clearStartY = MathF.Min(clearStartY, clearFlagTop);
+            Player.Position = new(flagX - 8, clearStartY);
+            Player.Grounded = MathF.Abs(clearStartY - clearFlagTop) < .001f;
         }
         message = castle ? "CASTLE" : "FLAG";
     }
@@ -280,21 +288,33 @@ public partial class Game
         TickPopups(dt);
         if (message == "FLAG")
         {
-            if (StateClock < 1.3f) { Player.Position = new(flagX - 8, Mathf.Lerp(clearStartY, -8, MathF.Min(1, StateClock / 1.3f))); }
+            if (StateClock < 1.3f)
+            {
+                Player.Position = new(flagX - 8, Mathf.Lerp(clearStartY, clearFlagTop, StateClock / 1.3f));
+                Player.Velocity = Vector2.Zero;
+                Player.Grounded = MathF.Abs(Player.Position.Y - clearFlagTop) < .001f;
+            }
             else
             {
+                if (StateClock - dt < 1.3f)
+                {
+                    Player.Position = new(flagX - 8, clearFlagTop);
+                    Player.Velocity = Vector2.Zero; Player.Grounded = true;
+                    Sound.Effect("CourseClear");
+                }
                 float pan = Math.Clamp((StateClock - 1.3f) / 2, 0, 1);
                 pan = pan * pan * (3 - 2 * pan);
                 float destination = Math.Clamp(clearCastleX - 128, World.MinX, MathF.Max(World.MinX, World.MaxX - 256));
                 CameraX = Mathf.Lerp(clearCameraStart, destination, pan);
-                if (!clearInsideCastle)
+                float walkDt = MathF.Min(dt, MathF.Max(0, StateClock - 1.3f));
+                if (!clearInsideCastle && walkDt > 0)
                 {
-                    float x = Mathf.MoveToward(Player.Position.X, clearCastleX, 52 * dt);
-                    Player.Position = new(x, Mathf.MoveToward(Player.Position.Y, clearCastleY, 80 * dt));
-                    Player.Velocity = new(x < clearCastleX ? 52 : 0, 0);
-                    clearInsideCastle = MathF.Abs(x - clearCastleX) < .01f;
+                    float remaining = MathF.Max(0, clearCastleX - Player.Position.X);
+                    Player.Velocity = new(MathF.Min(52, remaining / walkDt), MathF.Min(270, Player.Velocity.Y + 570 * walkDt));
+                    World.Move(Player, walkDt); FacingLeft = false;
+                    clearInsideCastle = MathF.Abs(Player.Position.X - clearCastleX) < .01f && Player.Grounded && MathF.Abs(Player.Position.Y - clearCastleY) < .05f;
+                    if (clearInsideCastle) Player.Velocity = Vector2.Zero;
                 }
-                if (StateClock - dt < 1.3f) Sound.Effect("CourseClear");
             }
         }
         else

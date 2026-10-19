@@ -48,7 +48,6 @@ public partial class Game
             for (autoFrames = 0; autoFrames < maxFrames; autoFrames++)
             {
                 Controls controls = State == Screen.Playing ? WorkflowControl() : new();
-                if (State != Screen.Pause) { Clock += 1f / 60; animationTime += 1f / 60; }
                 AdvanceState(1f / 60, controls);
                 if (State != previousState)
                 {
@@ -203,14 +202,14 @@ public partial class Game
             Vector2 at = e.Body.Position;
             if (e.Kind is "Goomba" or "GreenKoopaTroopa" or "RedKoopaTroopa" or "BuzzyBeetle" or "Spiny") at.X += e.Direction * (e.Kicked ? 220 : e.Shell ? 0 : 30) * future;
             else if (e.Kind == "BulletBill") at.X += e.Direction * 120 * future;
-            else if (e.Kind == "BowserFlame") at.X -= 90 * future;
+            else if (e.Kind == "BowserFlame") at.X += e.Direction * 90 * future;
             else if (e.Kind == "Blooper") at += e.Body.Velocity * future;
             Rect2 box = new(at.X - e.Body.Width / 2, at.Y - e.Body.Height, e.Body.Width, e.Body.Height);
             if (!body.Box.Intersects(box)) continue;
-            bool stompable = e.Kind is "Goomba" or "GreenKoopaTroopa" or "RedKoopaTroopa" or "BuzzyBeetle" or "HammerBro" or "Lakitu" or "BulletBill" or "FlyingFish";
-            if (!World.IsWater && stompable && body.Velocity.Y > 0 && body.Position.Y <= box.Position.Y + MathF.Max(7, body.Velocity.Y / 60 + 3))
+            bool stompable = e.Kind is "Goomba" or "GreenKoopaTroopa" or "RedKoopaTroopa" or "BuzzyBeetle" or "HammerBro" or "Lakitu" or "BulletBill" or "FlyingFish" or "Blooper" or "GreenCheepCheep" or "RedCheepCheep";
+            if (stompable && body.Velocity.Y > 0 && body.Position.Y <= box.Position.Y + MathF.Max(7, body.Velocity.Y / 60 + 3))
             {
-                body.Position = new(body.Position.X, box.Position.Y); body.Velocity = new(body.Velocity.X, -185); node.Stomped |= 1UL << i;
+                body.Position = new(body.Position.X, box.Position.Y); body.Velocity = new(body.Velocity.X, World.IsWater ? -115 : -185); node.Stomped |= 1UL << i;
             }
             else return false;
         }

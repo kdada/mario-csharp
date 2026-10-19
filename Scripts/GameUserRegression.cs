@@ -56,7 +56,7 @@ public partial class Game
             {
                 StartGame(0, true); Power = power; LoadRoom("1-2", false); State = Screen.Playing; pipeCooldown = 0;
                 var pipe = World.Triggers.Where(t => t.Kind == "PipeArea" && !t.Bool("exit_only") && t.Number("enter_direction") == 3).OrderByDescending(t => t.X).First();
-                Player.Position = new(HorizontalPipeMouth(pipe) - Player.Width / 2, pipe.Y + 16); float feet = Player.Position.Y; Crouching = true;
+                Player.Position = new(HorizontalPipeMouth(pipe) - Player.Width / 2, pipe.Y + 16); float feet = Player.Position.Y; Crouching = true; Player.Grounded = true;
                 TickTriggers(1f / 60, new Controls(1, false, false, false, false, false, false));
                 Check("side pipe preserves feet on entry " + power, pipeClock > 0 && Player.Position.Y == feet);
                 TickGame(.375f, new()); Check("side pipe keeps horizontal trajectory " + power, Player.Position.Y == feet);

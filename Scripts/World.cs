@@ -29,7 +29,7 @@ public sealed class Enemy
     public string Kind = "Goomba";
     public readonly Body Body = new();
     public Vector2 Home;
-    public float Clock, Timer, Phase;
+    public float Clock, Timer, Phase, JumpHeight;
     public bool Active, Dead, Removed, Winged, Shell, Kicked, Squashed, Flipped, Simulated, PipeSuppressed;
     public Rect2 PreviousBox;
     public int Direction = -1, Health = 5, Combo;
@@ -118,10 +118,11 @@ public sealed class World
             else if (k == "Coin") Coins.Add(e.Position);
             else if (IsEnemy(k))
             {
-                var enemy = new Enemy { Kind = k, Home = e.Position, Data = e, Winged = e.Bool("is_paratroopa") || e.Bool("winged") || e.Bool("is_paratroopa", e.Bool("flying")), Phase = Enemies.Count * 1.37f };
-                enemy.Body.Position = e.Position;
-                enemy.Body.Height = k.Contains("Koopa") || k == "HammerBro" ? 24 : k.Contains("Bowser") ? 32 : 16;
+                var enemy = new Enemy { Kind = k, Home = e.Position, Data = e, Winged = e.Bool("is_paratroopa") || e.Bool("winged") || e.Bool("is_paratroopa", e.Bool("flying")), Phase = k is "PiranhaPlant" or "Podoboo" ? 0 : Enemies.Count * 1.37f };
+                enemy.Body.Position = k == "PiranhaPlant" ? e.Position + new Vector2(0, 24) : e.Position;
+                enemy.Body.Height = k.Contains("Koopa") || k is "HammerBro" or "PiranhaPlant" ? 24 : k.Contains("Bowser") ? 32 : 16;
                 enemy.Body.Width = k.Contains("Bowser") ? 28 : 12;
+                if (k == "Podoboo") InitializePodoboo(enemy);
                 if (k is "Bowser" or "TrueBowser") enemy.Timer = 1.4f;
                 Enemies.Add(enemy);
             }
@@ -132,6 +133,31 @@ public sealed class World
             }
             else Triggers.Add(e);
         }
+    }
+    /// <summary>The authored solid directly below a pole, queried from the same terrain used by Move.</summary>
+    public Rect2? FlagBase(EntityData flag)
+    {
+        if (flag.Kind != "EndFlagpole") return null;
+        var key = (Mathf.FloorToInt(flag.X / 16), Mathf.FloorToInt((flag.Y - 8) / 16));
+        return terrain.TryGetValue(key, out var tile) ? tile : null;
+    }
+    public void InitializePodoboo(Enemy enemy)
+    {
+        Vector2 marker = enemy.Home;
+        float? surface = null;
+        foreach (var tile in Data.Tiles)
+            if (!IsWater && (int)tile[2] == 2 && tile[0] * 16 <= marker.X && (tile[0] + 1) * 16 > marker.X)
+            {
+                float y = tile[1] * 16;
+                surface = surface.HasValue ? MathF.Min(surface.Value, y) : y;
+            }
+        // Authored markers specify the apex, not the lava launch surface. For
+        // generated/test bubbles without lava, position means the launch mouth;
+        // retain the old 350 px/s, 500 px/s² trajectory's 122.5 px jump height.
+        enemy.Home = new(marker.X, (surface ?? marker.Y) + enemy.Body.Height);
+        enemy.JumpHeight = surface.HasValue ? MathF.Max(enemy.Body.Height, enemy.Home.Y - marker.Y) : 350f * 350 / (2 * 500);
+        enemy.Body.Position = enemy.Home; enemy.Body.Velocity = Vector2.Zero;
+        enemy.Clock = 0; enemy.Phase = 0;
     }
     public static bool IsEnemy(string k) => k is "Goomba" or "GreenKoopaTroopa" or "RedKoopaTroopa" or "PiranhaPlant" or "Blooper" or "GreenCheepCheep" or "RedCheepCheep" or "BuzzyBeetle" or "Bowser" or "TrueBowser" or "HammerBro" or "Lakitu" or "Podoboo" or "BowserFlame" or "BulletBill" or "Spiny";
     public bool SolidAt(Vector2 point)

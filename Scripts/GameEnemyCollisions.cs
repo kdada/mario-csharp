@@ -4,6 +4,24 @@ namespace MarioStudy;
 
 public partial class Game
 {
+    private Rect2 playerContactStart;
+    private World? playerContactWorld;
+    private bool playerContactCaptured;
+    private void CapturePlayerContact()
+    {
+        playerContactStart = Player.Box;
+        playerContactWorld = World;
+        playerContactCaptured = true;
+    }
+    private static bool PlayerEnemyContact(Rect2 oldPlayer, Rect2 player, Rect2 oldEnemy, Rect2 enemy, out bool above)
+    {
+        // Crouching/standing changes the head position, not the feet trajectory.
+        oldPlayer = new(oldPlayer.Position.X, oldPlayer.End.Y - player.Size.Y, player.Size.X, player.Size.Y);
+        bool contact = BodyContact(oldPlayer, player, oldEnemy, enemy, out bool side, out _);
+        float relativeFeet = (player.End.Y - oldPlayer.End.Y) - (enemy.Position.Y - oldEnemy.Position.Y);
+        above = contact && !side && relativeFeet > .00001f && oldPlayer.End.Y <= oldEnemy.Position.Y + .01f;
+        return contact;
+    }
     private static bool WalkingEnemy(Enemy e) => e.Kind is "Goomba" or "GreenKoopaTroopa" or "RedKoopaTroopa" or "BuzzyBeetle" or "Spiny" && !(e.Winged && e.Kind == "RedKoopaTroopa");
     private static bool RestingShell(Enemy e) => e.Shell && !e.Kicked;
     private void ResolveEnemyCollisions()
@@ -77,17 +95,18 @@ public partial class Game
         }
         enemy.Body.Position = new(x, enemy.Body.Position.Y);
     }
-    private static bool EnemyContact(Enemy a, Enemy b, out bool side, out float impactTime)
+    private static bool EnemyContact(Enemy a, Enemy b, out bool side, out float impactTime) =>
+        BodyContact(a.PreviousBox, a.Body.Box, b.PreviousBox, b.Body.Box, out side, out impactTime);
+    private static bool BodyContact(Rect2 oldA, Rect2 currentA, Rect2 oldB, Rect2 currentB, out bool side, out float impactTime)
     {
         impactTime = 0;
-        Rect2 oldA = a.PreviousBox, oldB = b.PreviousBox;
-        Vector2 delta = (a.Body.Box.Position - oldA.Position) - (b.Body.Box.Position - oldB.Position);
+        Vector2 delta = (currentA.Position - oldA.Position) - (currentB.Position - oldB.Position);
         if (oldA.Intersects(oldB))
         {
             float x = MathF.Min(oldA.End.X, oldB.End.X) - MathF.Max(oldA.Position.X, oldB.Position.X);
             float y = MathF.Min(oldA.End.Y, oldB.End.Y) - MathF.Max(oldA.Position.Y, oldB.Position.Y);
             side = x <= y;
-            return a.Body.Box.Intersects(b.Body.Box);
+            return currentA.Intersects(currentB);
         }
         float enterX = float.NegativeInfinity, exitX = float.PositiveInfinity, enterY = enterX, exitY = exitX;
         side = false;

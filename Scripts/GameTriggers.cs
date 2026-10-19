@@ -4,8 +4,22 @@ namespace MarioStudy;
 
 public partial class Game
 {
+    private string? pipeSwimAnimation;
+    private string PipePlayerAnimation => pipeSwimAnimation ?? (pipeVelocity.X != 0 ? "Move" : "Idle");
+    private void ResetPipeAnimation()
+    {
+        pipeClock = 0; pipeVelocity = Vector2.Zero; afterPipe = null; pipeSwimAnimation = null;
+    }
+    private void InitializeArrivalCamera()
+    {
+        // Arrivals must already satisfy UpdateCamera's 80..160 deadzone, including
+        // the first frame after the exit animation. Room edges use the same clamp.
+        CameraX = Math.Clamp(Player.Position.X - 80, World.MinX, MathF.Max(World.MinX, World.MaxX - 256));
+        ResetPipeAnimation();
+    }
     private void TickTriggers(float dt, Controls input)
     {
+        TickTrampolineAnimations(dt);
         foreach (var trigger in World.Triggers)
         {
             string kind = trigger.Kind;
@@ -26,7 +40,7 @@ public partial class Game
             else if (kind == "Trampoline")
             {
                 if (Player.Velocity.Y > 0 && Player.Position.X > trigger.X - 12 && Player.Position.X < trigger.X + 12 && Player.Position.Y >= trigger.Y - 24 && Player.Position.Y <= trigger.Y - 8)
-                { Player.Position = new(Player.Position.X, trigger.Y - 24); Player.Velocity = new(Player.Velocity.X, input.Jump ? -430 : -350); Sound.Effect("Spring"); }
+                { StartTrampolineAnimation(trigger); Player.Position = new(Player.Position.X, trigger.Y - 24); Player.Velocity = new(Player.Velocity.X, input.Jump ? -430 : -350); Sound.Effect("Spring"); }
             }
             else if (kind == "PipeArea" && !trigger.Bool("exit_only") && pipeCooldown <= 0)
             {
@@ -38,7 +52,7 @@ public partial class Game
                 string link = trigger.Text("connecting_pipe");
                 string name = link.Contains("../") ? link.Split("../")[1].TrimEnd('"', ')') : "PipeArea";
                 var target = World.Triggers.FirstOrDefault(t => t.Name == name);
-                if (target != null) StartPipeAnimation(Vector2.Down, () => { Player.Position = target.Position; HoldPipePlants(target.Position); CameraX = MathF.Max(World.MinX, Player.Position.X - 40); pipeCooldown = 1; });
+                if (target != null) StartPipeAnimation(Vector2.Down, () => { Player.Position = target.Position; HoldPipePlants(target.Position); InitializeArrivalCamera(); pipeCooldown = 1; });
                 return;
             }
             else if (kind == "PickAPathPoint")
@@ -59,7 +73,7 @@ public partial class Game
                     Vector2 reset = trigger.Vector("reset_pos", new(-248, 0));
                     foreach (var point in points) World.MazePoints.Remove(point.Text("_path", point.Name));
                     Player.Position = reset; Player.Velocity = Vector2.Zero;
-                    CameraX = MathF.Max(World.MinX, reset.X - 40); pipeCooldown = .5f;
+                    InitializeArrivalCamera(); pipeCooldown = .5f;
                 }
             }
             else if (kind == "WarpZone" && input.Down && pipeCooldown <= 0 && trigger.P.TryGetValue("pipe_destinations", out var destinations))
@@ -89,7 +103,7 @@ public partial class Game
         if (pipe.Kind != "PipeArea" || pipe.Bool("exit_only") || pipeCooldown > 0) return Vector2.Zero;
         int direction = (int)pipe.Number("enter_direction");
         if (direction == 0 && input.Down && MathF.Abs(Player.Position.X - VerticalPipeCenter(pipe)) < 7 && MathF.Abs(Player.Position.Y - pipe.Y) < 5) return Vector2.Down;
-        if (direction == 3 && input.Axis > 0 && MathF.Abs(Player.Box.End.X - HorizontalPipeMouth(pipe)) < .05f && Player.Box.Position.Y >= pipe.Y - 16 - .05f && Player.Position.Y <= pipe.Y + 16 + .05f) return Vector2.Right;
+        if (direction == 3 && (World.IsWater || Player.Grounded) && input.Axis > 0 && MathF.Abs(Player.Box.End.X - HorizontalPipeMouth(pipe)) < .05f && Player.Box.Position.Y >= pipe.Y - 16 - .05f && Player.Position.Y <= pipe.Y + 16 + .05f) return Vector2.Right;
         return Vector2.Zero;
     }
     private void PreparePipeEntry(Controls input)
@@ -103,11 +117,6 @@ public partial class Game
         {
             plant.PipeSuppressed = true; ResetHiddenPlant(plant);
         }
-    }
-    private static void ResetHiddenPlant(Enemy plant)
-    {
-        plant.Body.Position = plant.Home + new Vector2(0, 24); plant.Body.Height = 24; plant.Body.Velocity = Vector2.Zero;
-        plant.Clock = Mathf.PosMod(3 - plant.Phase, 4);
     }
     private static Vector2 CastleAxeFeet(EntityData bridge) => bridge.Position + new Vector2(208, -24);
     private float HorizontalPipeMouth(EntityData pipe)
@@ -128,6 +137,8 @@ public partial class Game
     {
         HoldPipePlants(mouth ?? Player.Position);
         float travel = direction.X == 0 ? (Power == 0 ? 16 : 32) + 4 : Player.Width + 12;
+        // Capture the swimming pose before pipe motion clears the player's velocity.
+        pipeSwimAnimation = direction.X != 0 && World.IsWater ? Player.Velocity.Y < 0 ? "SwimUp" : "SwimIdle" : null;
         Sound.Effect("Pipe"); Player.Velocity = Vector2.Zero; pipeVelocity = direction * (travel / .75f); pipeClock = .75f; afterPipe = action;
         if (direction.X != 0) FacingLeft = direction.X < 0;
     }
@@ -149,6 +160,7 @@ public partial class Game
             {
                 Vector2 exit = new(VerticalPipeCenter(entrance), entrance.Y);
                 Player.Position = exit + new Vector2(0, Player.Height + 4);
+                InitializeArrivalCamera();
                 StartPipeAnimation(Vector2.Up, () => { Player.Position = exit; Player.Velocity = Vector2.Zero; Player.Grounded = true; Crouching = false; }, entrance.Position);
             }
         }, pipe.Position);

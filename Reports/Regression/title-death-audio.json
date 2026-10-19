@@ -1,0 +1,458 @@
+{
+  "graphicsIncluded": false,
+  "audioPlaybackIncluded": false,
+  "sourceRepository": "https://github.com/JHDev2006/Super-Mario-Bros.-Remastered-Public",
+  "failures": 0,
+  "checks": [
+    {
+      "name": "original audio file exists BGM/TitleSMB.mp3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "audio matches existing source-library recording BGM/TitleSMB.mp3",
+      "passed": true,
+      "detail": "79f340ba70812d8a8d5334815895d2e8da377ab8d53a8e65c44d4b3c98875be2"
+    },
+    {
+      "name": "original audio file exists BGM/Overworld.mp3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "audio matches existing source-library recording BGM/Overworld.mp3",
+      "passed": true,
+      "detail": "d03bccd36f1275d66eb20937283e79bbf445092457165c43b0f6f3881d153c9d"
+    },
+    {
+      "name": "original audio file exists SFX/DieSting.wav",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "audio matches existing source-library recording SFX/DieSting.wav",
+      "passed": true,
+      "detail": "58791598443a6e000f370a78c55321dd18811bdaf76d2ae1c9db7596641949bd"
+    },
+    {
+      "name": "original audio file exists BGM/PlayerDie.wav",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "audio matches existing source-library recording BGM/PlayerDie.wav",
+      "passed": true,
+      "detail": "481c56a40c756ad9b65c26479ebd34150b7fc526b140d595242e3f0cd5fa136d"
+    },
+    {
+      "name": "title selects the source library\u0027s explicit SMB1 title variation",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "death music selects the original WAV resource rather than a nonexistent MP3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "complete death WAV metadata contains all original samples",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "short death sting and full melody are distinct resources",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "death state reserves the hang plus the complete melody and tail",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "title loads a complete looping MP3 without output",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "cached title accepts one-shot policy",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "returning to title restores looping and clears pause",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "death melody uses BGM channel and never loops",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "title caller starts the source title music",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "help retains title background music",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "level selection entered from title retains title music",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "starting a course stops title music for the intro",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "death starts with short original sting and silent BGM hang lives=2 practice=False 30Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "death music follows hang rather than replacing the sting immediately lives=2 practice=False 30Hz",
+      "passed": true,
+      "detail": "musicAt=0.7333"
+    },
+    {
+      "name": "death music begins with the existing death motion lives=2 practice=False 30Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "full death melody has time to finish before any scene music lives=2 practice=False 30Hz",
+      "passed": true,
+      "detail": "music window=2.1000, recording=1.9871"
+    },
+    {
+      "name": "respawn intro follows complete death music in silence lives=2 practice=False 30Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "respawn intro does not resume level music early lives=2 practice=False 30Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "level music resumes after the intro interval lives=2 practice=False 30Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "audio timing verification produces no playback lives=2 practice=False 30Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "death starts with short original sting and silent BGM hang lives=1 practice=False 30Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "death music follows hang rather than replacing the sting immediately lives=1 practice=False 30Hz",
+      "passed": true,
+      "detail": "musicAt=0.7333"
+    },
+    {
+      "name": "death music begins with the existing death motion lives=1 practice=False 30Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "full death melody has time to finish before any scene music lives=1 practice=False 30Hz",
+      "passed": true,
+      "detail": "music window=2.1000, recording=1.9871"
+    },
+    {
+      "name": "game over follows complete death melody and is not looped lives=1 practice=False 30Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "returning from game over starts title music lives=1 practice=False 30Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "audio timing verification produces no playback lives=1 practice=False 30Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "death starts with short original sting and silent BGM hang lives=1 practice=True 30Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "death music follows hang rather than replacing the sting immediately lives=1 practice=True 30Hz",
+      "passed": true,
+      "detail": "musicAt=0.7333"
+    },
+    {
+      "name": "death music begins with the existing death motion lives=1 practice=True 30Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "full death melody has time to finish before any scene music lives=1 practice=True 30Hz",
+      "passed": true,
+      "detail": "music window=2.1000, recording=1.9871"
+    },
+    {
+      "name": "respawn intro follows complete death music in silence lives=1 practice=True 30Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "respawn intro does not resume level music early lives=1 practice=True 30Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "level music resumes after the intro interval lives=1 practice=True 30Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "audio timing verification produces no playback lives=1 practice=True 30Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "death starts with short original sting and silent BGM hang lives=2 practice=False 60Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "death music follows hang rather than replacing the sting immediately lives=2 practice=False 60Hz",
+      "passed": true,
+      "detail": "musicAt=0.7167"
+    },
+    {
+      "name": "death music begins with the existing death motion lives=2 practice=False 60Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "full death melody has time to finish before any scene music lives=2 practice=False 60Hz",
+      "passed": true,
+      "detail": "music window=2.1000, recording=1.9871"
+    },
+    {
+      "name": "respawn intro follows complete death music in silence lives=2 practice=False 60Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "respawn intro does not resume level music early lives=2 practice=False 60Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "level music resumes after the intro interval lives=2 practice=False 60Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "audio timing verification produces no playback lives=2 practice=False 60Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "death starts with short original sting and silent BGM hang lives=1 practice=False 60Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "death music follows hang rather than replacing the sting immediately lives=1 practice=False 60Hz",
+      "passed": true,
+      "detail": "musicAt=0.7167"
+    },
+    {
+      "name": "death music begins with the existing death motion lives=1 practice=False 60Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "full death melody has time to finish before any scene music lives=1 practice=False 60Hz",
+      "passed": true,
+      "detail": "music window=2.1000, recording=1.9871"
+    },
+    {
+      "name": "game over follows complete death melody and is not looped lives=1 practice=False 60Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "returning from game over starts title music lives=1 practice=False 60Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "audio timing verification produces no playback lives=1 practice=False 60Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "death starts with short original sting and silent BGM hang lives=1 practice=True 60Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "death music follows hang rather than replacing the sting immediately lives=1 practice=True 60Hz",
+      "passed": true,
+      "detail": "musicAt=0.7167"
+    },
+    {
+      "name": "death music begins with the existing death motion lives=1 practice=True 60Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "full death melody has time to finish before any scene music lives=1 practice=True 60Hz",
+      "passed": true,
+      "detail": "music window=2.1000, recording=1.9871"
+    },
+    {
+      "name": "respawn intro follows complete death music in silence lives=1 practice=True 60Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "respawn intro does not resume level music early lives=1 practice=True 60Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "level music resumes after the intro interval lives=1 practice=True 60Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "audio timing verification produces no playback lives=1 practice=True 60Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "death starts with short original sting and silent BGM hang lives=2 practice=False 120Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "death music follows hang rather than replacing the sting immediately lives=2 practice=False 120Hz",
+      "passed": true,
+      "detail": "musicAt=0.7000"
+    },
+    {
+      "name": "death music begins with the existing death motion lives=2 practice=False 120Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "full death melody has time to finish before any scene music lives=2 practice=False 120Hz",
+      "passed": true,
+      "detail": "music window=2.1000, recording=1.9871"
+    },
+    {
+      "name": "respawn intro follows complete death music in silence lives=2 practice=False 120Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "respawn intro does not resume level music early lives=2 practice=False 120Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "level music resumes after the intro interval lives=2 practice=False 120Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "audio timing verification produces no playback lives=2 practice=False 120Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "death starts with short original sting and silent BGM hang lives=1 practice=False 120Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "death music follows hang rather than replacing the sting immediately lives=1 practice=False 120Hz",
+      "passed": true,
+      "detail": "musicAt=0.7000"
+    },
+    {
+      "name": "death music begins with the existing death motion lives=1 practice=False 120Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "full death melody has time to finish before any scene music lives=1 practice=False 120Hz",
+      "passed": true,
+      "detail": "music window=2.1000, recording=1.9871"
+    },
+    {
+      "name": "game over follows complete death melody and is not looped lives=1 practice=False 120Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "returning from game over starts title music lives=1 practice=False 120Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "audio timing verification produces no playback lives=1 practice=False 120Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "death starts with short original sting and silent BGM hang lives=1 practice=True 120Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "death music follows hang rather than replacing the sting immediately lives=1 practice=True 120Hz",
+      "passed": true,
+      "detail": "musicAt=0.7000"
+    },
+    {
+      "name": "death music begins with the existing death motion lives=1 practice=True 120Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "full death melody has time to finish before any scene music lives=1 practice=True 120Hz",
+      "passed": true,
+      "detail": "music window=2.1000, recording=1.9871"
+    },
+    {
+      "name": "respawn intro follows complete death music in silence lives=1 practice=True 120Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "respawn intro does not resume level music early lives=1 practice=True 120Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "level music resumes after the intro interval lives=1 practice=True 120Hz",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "audio timing verification produces no playback lives=1 practice=True 120Hz",
+      "passed": true,
+      "detail": ""
+    }
+  ]
+}

@@ -6,6 +6,11 @@ public partial class Game
 {
     private void TickEnemies(float dt)
     {
+        // Direct mechanics checks can tick enemies without a preceding player tick.
+        Rect2 oldPlayer = playerContactCaptured && ReferenceEquals(playerContactWorld, World)
+            ? playerContactStart : new(Player.Box.Position - Player.Velocity * dt, Player.Box.Size);
+        Rect2 player = Player.Box;
+        playerContactCaptured = false;
         // New enemies spawned by generators are added after enumeration.
         var spawned = new List<Enemy>();
         foreach (var e in World.Enemies)
@@ -56,11 +61,16 @@ public partial class Game
             }
             else if (e.Kind == "PiranhaPlant")
             {
-                float cycle = (e.Clock + e.Phase) % 4.0f;
+                // Each plant starts with a full hidden interval and advances only
+                // while this room/enemy is simulated; global time and Phase cannot jump it.
                 bool near = MathF.Abs(Player.Position.X - e.Home.X) < 24;
-                float rise = cycle < 1 ? cycle : cycle < 2 ? 1 : cycle < 3 ? 3 - cycle : 0;
-                if (near && e.Body.Position.Y >= e.Home.Y + 23) rise = 0;
-                e.Body.Position = e.Home + new Vector2(0, 24 * (1 - rise)); e.Body.Height = 24;
+                if (near && e.Body.Position.Y >= e.Home.Y + 23) ResetHiddenPlant(e);
+                else
+                {
+                    float cycle = e.Clock %= 4;
+                    float rise = cycle < 1 ? 0 : cycle < 2 ? cycle - 1 : cycle < 3 ? 1 : 4 - cycle;
+                    e.Body.Position = e.Home + new Vector2(0, 24 * (1 - rise)); e.Body.Height = 24;
+                }
             }
             else if (e.Kind == "Blooper")
             {
@@ -71,7 +81,20 @@ public partial class Game
             }
             else if (e.Kind is "GreenCheepCheep" or "RedCheepCheep")
             {
-                e.Body.Position += new Vector2(-32 * dt, MathF.Sin(e.Clock * 2 + e.Phase) * 10 * dt);
+                if (World.IsWater)
+                {
+                    Vector2 before = e.Body.Position;
+                    e.Body.Velocity = new(e.Direction * 32, MathF.Sin(e.Clock * 2 + e.Phase) * 10);
+                    World.Move(e.Body, dt, platforms: false);
+                    bool turn = e.Body.HitWall;
+                    if (!WaterFishOpen(e.Body.Box, WaterFishPopulationForRoom())) { e.Body.Position = before; turn = true; }
+                    if (turn) e.Direction *= -1;
+                }
+                else
+                {
+                    e.Body.Velocity = new(e.Direction * 32, MathF.Sin(e.Clock * 2 + e.Phase) * 10);
+                    e.Body.Position += e.Body.Velocity * dt;
+                }
             }
             else if (e.Kind == "FlyingFish")
             {
@@ -80,12 +103,20 @@ public partial class Game
             }
             else if (e.Kind == "Podoboo")
             {
-                float cycle = (e.Clock + e.Phase) % 3.3f;
-                if (cycle < 1.4f) e.Body.Position = new(e.Home.X, e.Home.Y + 32 - 350 * cycle + 250 * cycle * cycle);
-                else e.Body.Position = e.Home + new Vector2(0, 48);
+                // Rest below the lava before each complete up/down arc. The
+                // map marker remains the apex; Home is the submerged launch point.
+                float cycle = e.Clock %= 3.3f;
+                float flight = cycle - 1.9f;
+                if (flight <= 0) { e.Body.Position = e.Home; e.Body.Velocity = Vector2.Zero; }
+                else
+                {
+                    float progress = flight / 1.4f;
+                    e.Body.Position = e.Home - new Vector2(0, 4 * e.JumpHeight * progress * (1 - progress));
+                    e.Body.Velocity = new(0, 4 * e.JumpHeight / 1.4f * (2 * progress - 1));
+                }
             }
             else if (e.Kind == "BulletBill") e.Body.Position += new Vector2(e.Direction * 120 * dt, 0);
-            else if (e.Kind == "BowserFlame") e.Body.Position += new Vector2(-90 * dt, 0);
+            else if (e.Kind == "BowserFlame") e.Body.Position += new Vector2(e.Direction * 90 * dt, 0);
             else if (e.Kind == "HammerBro")
             {
                 e.Timer -= dt;
@@ -104,7 +135,7 @@ public partial class Game
                 if (e.Timer <= 0)
                 {
                     e.Timer = 1.3f + (float)random.NextDouble() * 1.4f;
-                    var flame = NewEnemy("BowserFlame", e.Body.Position + new Vector2(-16, -14)); flame.Active = true; spawned.Add(flame); Sound.Effect("BowserFire");
+                    var flame = NewEnemy("BowserFlame", e.Body.Position + new Vector2(e.Direction * 16, -14)); flame.Direction = e.Direction; flame.Active = true; spawned.Add(flame); Sound.Effect("BowserFire");
                     if (LevelIndex >= 20) ThrowHammer(e);
                 }
             }
@@ -120,25 +151,39 @@ public partial class Game
         {
             if (State != Screen.Playing) break;
             if (!e.Simulated || e.Dead || e.Removed || e.PipeSuppressed || e.Kind == "PiranhaPlant" && e.Body.Position.Y >= e.Home.Y + 22) continue;
-            if (Player.Box.Intersects(e.Body.Box)) TouchEnemy(e);
+            if (PlayerEnemyContact(oldPlayer, player, e.PreviousBox, e.Body.Box, out bool above)) TouchEnemy(e, above);
         }
         World.Enemies.AddRange(spawned);
         TickGenerators(dt);
     }
+    private static void ResetHiddenPlant(Enemy plant)
+    {
+        plant.Body.Position = plant.Home + new Vector2(0, 24); plant.Body.Height = 24; plant.Body.Velocity = Vector2.Zero;
+        plant.Clock = 0; plant.Phase = 0;
+    }
     private Enemy NewEnemy(string kind, Vector2 position)
     {
-        var e = new Enemy { Kind = kind, Home = position }; e.Body.Position = position; return e;
+        var e = new Enemy { Kind = kind, Home = position }; e.Body.Position = position;
+        if (kind == "PiranhaPlant") ResetHiddenPlant(e);
+        if (kind == "Podoboo") World.InitializePodoboo(e);
+        return e;
     }
     private int ShellScore(int count) => count switch { 1 => 500, 2 => 800, 3 => 1000, 4 => 2000, 5 => 4000, 6 => 5000, 7 => 8000, _ => 10000 };
     public void TouchEnemy(Enemy e)
     {
-        if (e.Dead || e.Removed || e.PipeSuppressed) return;
+        Rect2 player = Player.Box, enemy = e.Body.Box;
+        PlayerEnemyContact(new(player.Position - Player.Velocity / 60, player.Size), player,
+            new(enemy.Position - e.Body.Velocity / 60, enemy.Size), enemy, out bool above);
+        TouchEnemy(e, above);
+    }
+    private void TouchEnemy(Enemy e, bool above)
+    {
+        if (e.Dead || e.Removed || e.PipeSuppressed || e.Kind == "PiranhaPlant" && e.Body.Position.Y >= e.Home.Y + 22) return;
         if (StarTime > 0 && e.Kind is not ("Podoboo" or "BowserFlame")) { DefeatEnemy(e, true, 100); return; }
-        bool stompable = e.Kind is "Goomba" or "GreenKoopaTroopa" or "RedKoopaTroopa" or "BuzzyBeetle" or "HammerBro" or "Lakitu" or "BulletBill" or "FlyingFish";
-        bool above = Player.Velocity.Y > 0 && Player.Position.Y <= e.Body.Box.Position.Y + MathF.Max(7, Player.Velocity.Y / 60 + 3);
-        if (stompable && above && !World.IsWater)
+        bool stompable = e.Kind is "Goomba" or "GreenKoopaTroopa" or "RedKoopaTroopa" or "BuzzyBeetle" or "HammerBro" or "Lakitu" or "BulletBill" or "FlyingFish" or "Blooper" or "GreenCheepCheep" or "RedCheepCheep";
+        if (stompable && above)
         {
-            Player.Position = new(Player.Position.X, e.Body.Box.Position.Y); Player.Velocity = new(Player.Velocity.X, -185);
+            Player.Position = new(Player.Position.X, MathF.Min(Player.Position.Y, e.Body.Box.Position.Y)); Player.Velocity = new(Player.Velocity.X, World.IsWater ? -115 : -185);
             Sound.Effect("Stomp"); stompCombo++;
             if (stompCombo >= 8) { Lives++; Sound.Effect("1up"); Popup("1UP", e.Body.Position - new Vector2(12, 24)); }
             if (e.Winged) { e.Winged = false; Score += 100; return; }
@@ -155,7 +200,21 @@ public partial class Game
         {
             KickShell(e); Player.Position += new Vector2(Player.Position.X < e.Body.Position.X ? -3 : 3, 0); return;
         }
+        FacePlayerOnContact(e);
         Hurt();
+    }
+    private void FacePlayerOnContact(Enemy enemy)
+    {
+        if (enemy.Shell || enemy.Kind is not ("Goomba" or "GreenKoopaTroopa" or "RedKoopaTroopa" or "BuzzyBeetle" or "Spiny" or "GreenCheepCheep" or "RedCheepCheep" or "Blooper" or "HammerBro" or "Lakitu" or "Bowser" or "TrueBowser" or "FlyingFish")) return;
+        float distance = Player.Position.X - enemy.Body.Position.X;
+        if (MathF.Abs(distance) <= .5f) return;
+        enemy.Direction = distance < 0 ? -1 : 1;
+        if (enemy.Kind is "Goomba" or "GreenKoopaTroopa" or "RedKoopaTroopa" or "BuzzyBeetle" or "Spiny")
+        {
+            if (!(enemy.Winged && enemy.Kind == "RedKoopaTroopa")) enemy.Body.Velocity = new(enemy.Direction * 30, enemy.Body.Velocity.Y);
+        }
+        else if (enemy.Kind is "GreenCheepCheep" or "RedCheepCheep") enemy.Body.Velocity = new(enemy.Direction * 32, enemy.Body.Velocity.Y);
+        else if (enemy.Kind == "FlyingFish") enemy.Body.Velocity = new(enemy.Direction * MathF.Abs(enemy.Body.Velocity.X), enemy.Body.Velocity.Y);
     }
     private void KickShell(Enemy e)
     {
@@ -209,11 +268,99 @@ public partial class Game
         World.Shots.RemoveAll(s => s.Removed);
     }
     private readonly Dictionary<string, float> generatorClocks = [];
+    private const int WaterFishLimit = 6;
+    private sealed class WaterFishSource
+    {
+        public float Remaining = 2;
+        public int Band;
+        public bool Started, Stopped;
+    }
+    private sealed class WaterFishPopulation
+    {
+        public readonly Dictionary<EntityData, WaterFishSource> Sources = [];
+        public readonly HashSet<Enemy> Spawned = [];
+        public readonly HashSet<(int x, int y)> Cells;
+        public readonly float Top, Bottom;
+        public WaterFishPopulation(World world)
+        {
+            Cells = world.Data.Tiles.Where(t => (int)t[2] == 2).Select(t => ((int)t[0], (int)t[1])).ToHashSet();
+            Top = Cells.Count == 0 ? -152 : Cells.Min(c => c.y) * 16 + 24;
+            Bottom = Cells.Count == 0 ? -8 : MathF.Min(0, (Cells.Max(c => c.y) + 1) * 16) - 8;
+        }
+    }
+    private readonly System.Runtime.CompilerServices.ConditionalWeakTable<World, WaterFishPopulation> waterFishPopulations = new();
+    private WaterFishPopulation WaterFishPopulationForRoom() => waterFishPopulations.GetValue(World, static world => new WaterFishPopulation(world));
+    private bool WaterFishOpen(Rect2 body, WaterFishPopulation population)
+    {
+        Rect2 clearance = body.Grow(4);
+        if (World.Colliders(clearance, false).Any(c => clearance.Intersects(c.box))) return false;
+        // Mechanics fixtures can mark an empty room as water without liquid tiles.
+        if (population.Cells.Count == 0) return true;
+        for (int y = Mathf.FloorToInt(clearance.Position.Y / 16); y <= Mathf.FloorToInt((clearance.End.Y - .001f) / 16); y++)
+            for (int x = Mathf.FloorToInt(clearance.Position.X / 16); x <= Mathf.FloorToInt((clearance.End.X - .001f) / 16); x++)
+                if (!population.Cells.Contains((x, y))) return false;
+        return true;
+    }
+    private void CullGeneratedWaterFish(WaterFishPopulation population)
+    {
+        foreach (var fish in population.Spawned.ToArray())
+        {
+            if (!fish.Removed && (fish.Dead || fish.Body.Position.X >= CameraX - 80 && fish.Body.Position.X <= CameraX + 336)) continue;
+            fish.Removed = true; World.Enemies.Remove(fish); population.Spawned.Remove(fish);
+        }
+    }
+    private bool SpawnWaterFish(WaterFishSource source, WaterFishPopulation population)
+    {
+        if (population.Cells.Count == 0) return false;
+        var candidates = new List<(Vector2 position, int band)>();
+        foreach (float x in new[] { CameraX + 280, CameraX + 296, CameraX + 312, CameraX - 24, CameraX - 40, CameraX - 56 })
+        {
+            if (x - 10 < World.MinX || x + 10 > World.MaxX) continue;
+            for (float y = population.Top; y <= population.Bottom; y += 16)
+            {
+                Rect2 box = new(x - 6, y - 16, 12, 16);
+                if (!WaterFishOpen(box, population) || Player.Box.Grow(48).Intersects(box) ||
+                    World.Enemies.Any(e => !e.Dead && !e.Removed && e.Body.Box.Grow(16).Intersects(box))) continue;
+                int band = Math.Clamp((int)((y - population.Top) * 3 / (population.Bottom - population.Top + 1)), 0, 2);
+                candidates.Add((new(x, y), band));
+            }
+        }
+        if (candidates.Count == 0) return false;
+        var ahead = candidates.Where(c => c.position.X > CameraX + 256).ToList();
+        if (ahead.Count > 0) candidates = ahead;
+        var preferred = candidates.Where(c => c.band == source.Band).ToArray();
+        var selected = preferred.Length > 0 ? preferred[random.Next(preferred.Length)] : candidates[random.Next(candidates.Count)];
+        var fish = NewEnemy("RedCheepCheep", selected.position);
+        fish.Active = true; fish.Direction = selected.position.X > CameraX + 128 ? -1 : 1;
+        fish.Body.Velocity = new(fish.Direction * 32, 0); fish.Phase = (float)random.NextDouble() * MathF.Tau;
+        World.Enemies.Add(fish); population.Spawned.Add(fish);
+        source.Band = (selected.band + 1) % 3;
+        return true;
+    }
+    private void TickWaterFishGenerator(EntityData trigger, float dt, WaterFishPopulation population)
+    {
+        if (!population.Sources.TryGetValue(trigger, out var source)) population.Sources[trigger] = source = new WaterFishSource();
+        float end = World.Triggers.Where(t => t.Kind == "EntityGeneratorStopper" && t.X > trigger.X).Select(t => t.X).DefaultIfEmpty(World.MaxX).Min();
+        if (Player.Position.X >= end) source.Stopped = true;
+        if (source.Stopped || Player.Position.X < trigger.X) return;
+        source.Started = true;
+        // Count only the nearby density. Generated fish leaving this interval are
+        // transient; authored enemies keep their normal backtracking semantics.
+        int nearby = World.Enemies.Count(e => !e.Dead && !e.Removed && (e.Kind is "GreenCheepCheep" or "RedCheepCheep") && e.Body.Position.X >= CameraX - 80 && e.Body.Position.X <= CameraX + 336);
+        if (nearby >= WaterFishLimit) { source.Remaining = MathF.Max(source.Remaining, .5f); return; }
+        source.Remaining -= dt;
+        if (source.Remaining > 0) return;
+        source.Remaining = SpawnWaterFish(source, population) ? 1.6f : .5f;
+    }
     private void TickGenerators(float dt)
     {
+        WaterFishPopulation? population = World.IsWater ? WaterFishPopulationForRoom() : null;
+        if (population != null) CullGeneratedWaterFish(population);
         foreach (var trigger in World.Triggers)
         {
             string k = trigger.Kind;
+            if (population != null && k.Contains("Cheep") && k.Contains("Generator"))
+            { TickWaterFishGenerator(trigger, dt, population); continue; }
             if (k == "EntityGeneratorStopper" || !(k.Contains("Generator") || k == "BulletBillCannon") || trigger.X > CameraX + 256 || trigger.X < CameraX - 256) continue;
             string id = World.Data.Id + ":" + trigger.Name;
             float timer = generatorClocks.GetValueOrDefault(id, 2) - dt;

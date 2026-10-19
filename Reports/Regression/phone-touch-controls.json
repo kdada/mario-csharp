@@ -1,6 +1,7 @@
 {
   "deviceType": "2in1",
-  "display": "OpenHarmony",
+  "display": "headless",
+  "graphicsIncluded": false,
   "failures": 0,
   "checks": [
     {
@@ -49,12 +50,22 @@
       "detail": "2in1"
     },
     {
+      "name": "legacy Controls constructor leaves high jump disabled",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "name": "phone game remains centered 512x240",
       "passed": true,
       "detail": ""
     },
     {
       "name": "phone game preserves NES aspect 512x240",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "phone exposes nine controls 512x240",
       "passed": true,
       "detail": ""
     },
@@ -69,7 +80,7 @@
       "detail": ""
     },
     {
-      "name": "directions use left sidebar 512x240",
+      "name": "walk and run use left sidebar 512x240",
       "passed": true,
       "detail": ""
     },
@@ -79,7 +90,7 @@
       "detail": ""
     },
     {
-      "name": "running jump bridge stays outside game 512x240",
+      "name": "movement pad exactly covers four seamless cells 512x240",
       "passed": true,
       "detail": ""
     },
@@ -94,6 +105,11 @@
       "detail": ""
     },
     {
+      "name": "phone exposes nine controls 1280x720",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "name": "phone controls stay inside viewport 1280x720",
       "passed": true,
       "detail": ""
@@ -104,7 +120,7 @@
       "detail": ""
     },
     {
-      "name": "directions use left sidebar 1280x720",
+      "name": "walk and run use left sidebar 1280x720",
       "passed": true,
       "detail": ""
     },
@@ -114,7 +130,7 @@
       "detail": ""
     },
     {
-      "name": "running jump bridge stays outside game 1280x720",
+      "name": "movement pad exactly covers four seamless cells 1280x720",
       "passed": true,
       "detail": ""
     },
@@ -129,6 +145,11 @@
       "detail": ""
     },
     {
+      "name": "phone exposes nine controls 2340x1080",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "name": "phone controls stay inside viewport 2340x1080",
       "passed": true,
       "detail": ""
@@ -139,7 +160,7 @@
       "detail": ""
     },
     {
-      "name": "directions use left sidebar 2340x1080",
+      "name": "walk and run use left sidebar 2340x1080",
       "passed": true,
       "detail": ""
     },
@@ -149,7 +170,7 @@
       "detail": ""
     },
     {
-      "name": "running jump bridge stays outside game 2340x1080",
+      "name": "movement pad exactly covers four seamless cells 2340x1080",
       "passed": true,
       "detail": ""
     },
@@ -164,6 +185,11 @@
       "detail": ""
     },
     {
+      "name": "phone exposes nine controls 1920x1080",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "name": "phone controls stay inside viewport 1920x1080",
       "passed": true,
       "detail": ""
@@ -174,7 +200,7 @@
       "detail": ""
     },
     {
-      "name": "directions use left sidebar 1920x1080",
+      "name": "walk and run use left sidebar 1920x1080",
       "passed": true,
       "detail": ""
     },
@@ -184,7 +210,7 @@
       "detail": ""
     },
     {
-      "name": "running jump bridge stays outside game 1920x1080",
+      "name": "movement pad exactly covers four seamless cells 1920x1080",
       "passed": true,
       "detail": ""
     },
@@ -199,6 +225,11 @@
       "detail": ""
     },
     {
+      "name": "phone exposes nine controls 1024x768",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "name": "phone controls stay inside viewport 1024x768",
       "passed": true,
       "detail": ""
@@ -209,7 +240,7 @@
       "detail": ""
     },
     {
-      "name": "directions use left sidebar 1024x768",
+      "name": "walk and run use left sidebar 1024x768",
       "passed": true,
       "detail": ""
     },
@@ -219,7 +250,7 @@
       "detail": ""
     },
     {
-      "name": "running jump bridge stays outside game 1024x768",
+      "name": "movement pad exactly covers four seamless cells 1024x768",
       "passed": true,
       "detail": ""
     },
@@ -234,6 +265,11 @@
       "detail": ""
     },
     {
+      "name": "phone exposes nine controls 240x512",
+      "passed": true,
+      "detail": ""
+    },
+    {
       "name": "phone controls stay inside viewport 240x512",
       "passed": true,
       "detail": ""
@@ -244,7 +280,7 @@
       "detail": ""
     },
     {
-      "name": "directions use left sidebar 240x512",
+      "name": "walk and run use left sidebar 240x512",
       "passed": true,
       "detail": ""
     },
@@ -254,252 +290,892 @@
       "detail": ""
     },
     {
-      "name": "running jump bridge stays outside game 240x512",
+      "name": "movement pad exactly covers four seamless cells 240x512",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "desktop touchscreen stays without virtual controls",
+      "name": "desktop touch never enables phone controls",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "gameplay tap outside buttons has no action",
+      "name": "gameplay taps and HUD remain outside controls",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "HUD tap does not pause",
+      "name": "drawn button center hits same control 0",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "round button corners do not activate",
+      "name": "drawn button center hits same control 1",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "drawn button center hits same button 0",
+      "name": "drawn button center hits same control 2",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "drawn button center hits same button 1",
+      "name": "drawn button center hits same control 3",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "drawn button center hits same button 2",
+      "name": "drawn button center hits same control 4",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "drawn button center hits same button 3",
+      "name": "drawn button center hits same control 5",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "drawn button center hits same button 4",
+      "name": "drawn button center hits same control 6",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "drawn button center hits same button 5",
+      "name": "drawn button center hits same control 7",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "drawn button center hits same button 6",
+      "name": "drawn button center hits same control 8",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "three fingers move run and jump together",
+      "name": "rectangular control includes its corner 0",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "held buttons do not repeat press edges",
+      "name": "rectangular control includes its corner 1",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "jump release preserves movement and run",
+      "name": "rectangular control includes its corner 2",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "second finger on jump does not retrigger",
+      "name": "rectangular control includes its corner 3",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "one jump finger can lift while another holds",
+      "name": "rectangular control includes its corner 4",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "all lifted buttons release",
+      "name": "rectangular control includes its corner 5",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "short tap survives between physics frames",
+      "name": "rectangular control includes its corner 6",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "short fire tap survives between physics frames",
+      "name": "rectangular control includes its corner 7",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "canceled jump does not fire",
+      "name": "only pause has rounded hit boundary",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "untracked cancel preserves another finger short tap",
+      "name": "left walk is slow movement without fire",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "sliding off releases direction",
+      "name": "continuous horizontal drag changes walk direction",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "sliding back changes direction",
+      "name": "vertical drag changes right walk to run",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "orphan drag cannot stick a button",
+      "name": "continuous lower row changes run direction",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "down supports crouching and pipes",
+      "name": "vertical drag changes left run back to walk",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "up supports vine climbing",
+      "name": "movement seam 0-1 has no dead area at (63.99, 324.16)",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "focus loss releases all touch state",
+      "name": "movement seam 0-1 has no dead area at (64, 324.16)",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "application pause releases fire",
+      "name": "movement seam 0-1 has no dead area at (64.01, 324.16)",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "window defocus releases jump",
+      "name": "movement seam 2-3 has no dead area at (63.99, 372.16)",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "viewport resize clears held buttons and pending edges",
+      "name": "movement seam 2-3 has no dead area at (64, 372.16)",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "old drag after resize cannot reacquire a button",
+      "name": "movement seam 2-3 has no dead area at (64.01, 372.16)",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "T preview disable releases all buttons",
+      "name": "movement seam 0-2 has no dead area at (38, 348.15)",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "T preview enables sidebar presentation",
+      "name": "movement seam 0-2 has no dead area at (38, 348.16)",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "pause button pauses and clears gameplay fingers",
+      "name": "movement seam 0-2 has no dead area at (38, 348.17)",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "pause button resumes",
+      "name": "movement seam 1-3 has no dead area at (90, 348.15)",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "phone title navigates down",
+      "name": "movement seam 1-3 has no dead area at (90, 348.16)",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "phone title navigates up",
+      "name": "movement seam 1-3 has no dead area at (90, 348.17)",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "phone OK opens level select",
+      "name": "drag off movement pad releases",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "phone level select uses both axes",
+      "name": "tracked finger can return to movement pad",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "phone BACK returns to title",
+      "name": "orphan drag cannot reacquire controls",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "phone OK leaves help",
+      "name": "fire control disabled without flower power 0",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "right thumb keeps run across button gap",
+      "name": "fire control disabled without flower power 1",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "two thumbs combine move run and jump",
+      "name": "fire press launches exactly one shot without run",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "canceling running jump releases both actions",
+      "name": "held fire never auto repeats or accelerates",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "virtual buttons drive actual running jump",
-      "passed": true,
-      "detail": "x=125.3, height=65.0"
-    },
-    {
-      "name": "GPU phone sidebars leave complete game frame unchanged",
+      "name": "repressing fire launches the next shot",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "GPU left sidebar contains visible direction control",
+      "name": "dragging into fire emits one fire edge without run",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "GPU held button gives feedback",
+      "name": "staying on fire after drag has no repeat edge",
       "passed": true,
       "detail": ""
     },
     {
-      "name": "GPU phone menus render",
+      "name": "leaving then reentering fire re-arms the edge",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "running direction never fires",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "big jump adds height but never fires",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "releasing running direction keeps high jump without run",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "releasing big jump preserves running direction only",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "releasing one running finger preserves another running source",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ordinary short tap retains one jump edge without high jump",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "big jump short tap retains height and jump edge without run",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "big jump short tap consumes pending height once",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "quick high jump affects launch height without horizontal acceleration",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "cancel removes pending big jump height",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "canceling a different tracked jump preserves valid short tap",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "orphan cancel preserves another finger high jump without run",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "canceling one fire finger preserves other pending shot",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "cancel removes its own fire edge",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ordinary jump first edge",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "jump row includes its connection gap",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "drag through jump gap keeps hold without extra edge",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "drag into big jump adds height without run or new edge",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "drag back to normal jump removes height without new edge",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "new high jump finger has its own press edge",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "one jump finger can lift while high jump remains held",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "lifting big jump keeps normal jump but releases height",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "all jump fingers released",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "fresh touch in jump gap does not activate",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "big jump keeps height through connection gap without run",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "down supports crouching and pipe input",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "jump variant climbs near vine without run 4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "jump variant climbs near vine without run 5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "jump away from vine does not add up",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "focus loss clears touch actions and pending edges",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "app pause clears pending fire",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "window defocus clears big jump",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "resize clears touch run and jump edges",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "old drag cannot reacquire after resize",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "T disable clears touch without pending jump",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "T enables expanded sidebar preview",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pause touch clears gameplay fingers",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "pause touch resumes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "lower right movement cell navigates menu down",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "lower left movement cell navigates menu up",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "menu hides crouch and fire controls",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "jump is menu OK",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "menu movement pad maps two axes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "menu movement reverses both axes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "big jump is menu BACK",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "OK leaves help",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice pause cycles through six options down 1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice pause cycles through six options down 2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice pause cycles through six options down 3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice pause cycles through six options down 4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice pause cycles through six options down 5",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice pause cycles through six options down 6",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice pause up wraps to FIRE MARIO",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice pause BIG MARIO follows original four items",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice OK selects BIG MARIO and resumes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "BIG MARIO selection preserves room position speed and time",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice FIRE MARIO is sixth pause item",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice OK selects FIRE MARIO and resumes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "FIRE MARIO selection preserves room position speed and time",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice FIRE MARIO enables fire touch control",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "practice BIG MARIO under a low roof stays crouched",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ordinary pause retains four options 1",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ordinary pause retains four options 2",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ordinary pause retains four options 3",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ordinary pause retains four options 4",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ordinary pause up wraps to TITLE",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "ordinary pause BACK resumes without a power shortcut or pending jump",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "walking with either jump stays at walk speed 90",
+      "passed": true,
+      "detail": "normal=90, high=90"
+    },
+    {
+      "name": "high jump leaves walking horizontal acceleration unchanged",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "walking big jump raises height without enabling run",
+      "passed": true,
+      "detail": "normal=54.93, high=64.99"
+    },
+    {
+      "name": "running with either jump stays at run speed 150",
+      "passed": true,
+      "detail": "normal=150, high=150"
+    },
+    {
+      "name": "high jump leaves running horizontal acceleration unchanged",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "run and high jump do not stack jump height",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "multiple running fingers plus high jump never stack acceleration or height",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "stationary high jump adds no horizontal movement",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "walk run and high jump trials never emit fireballs",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "directionless high jump preserves ordinary horizontal inertia",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "physical movement mapping A",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "physical movement mapping Left",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "physical movement mapping D",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "physical movement mapping Right",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "physical down mapping S",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "physical down mapping Down",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "physical up mapping W",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "physical up mapping Up",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "physical J remains jump only near vine",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "held physical J never repeats jump edge",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "physical J release clears hold",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "physical K retains run and fire mapping",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "held physical K never repeats fire edge",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "keyboard K still runs without flower while shot stays gated",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "real joypad direction DpadLeft",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "real joypad direction DpadRight",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "real joypad down",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "real joypad up",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "real joypad stick right",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "real joypad stick left",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "joypad direction retains priority over opposite stick",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "joypad stick deadzone",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "real joypad A remains jump without touch climb",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "held joypad A has one jump edge",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "real joypad X retains run and fire",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "held joypad X has one fire edge",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "joypad shoulder runs without firing or high jump",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "shoulder run and touch high jump remain independent",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "releasing touch height preserves shoulder run only",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "joypad Start pauses",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "joypad Start resumes",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "joypad A still confirms menus",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "joypad directions still navigate menu grid",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "joypad B still returns from menus",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "touch run plus shoulder plus high jump obeys run speed and height caps",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "releasing shoulder preserves touch run and separate height",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "releasing last run source leaves height without run",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "releasing final high jump clears both modifiers",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "physical jump and fire first edges are present",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "touch cleanup preserves held keyboard state without new edges",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "T disable does not retrigger held keyboard",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "T enable does not retrigger held keyboard",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "lifting touch jump does not retrigger held keyboard",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "resize touch cleanup does not retrigger held keyboard",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "touch focus cleanup leaves injected physical edge history intact",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "physical release remains observable after touch cleanup",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "fresh physical press re-arms both edges after cleanup",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "joypad jump and fire first edges are present",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "touch cleanup does not retrigger held joypad",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "T toggle does not retrigger held joypad",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "resize cleanup does not retrigger held joypad",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "joypad release clears jump and run",
       "passed": true,
       "detail": ""
     }

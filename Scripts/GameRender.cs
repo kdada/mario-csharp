@@ -4,6 +4,7 @@ namespace MarioStudy;
 
 public partial class Game
 {
+    private const string PrincessSprite = "Players/PeachNPC.png";
     private Vector2 View(Vector2 position) => (position + new Vector2(-CameraX, 208)).Round();
     private void SetGameDrawTransform(Vector2 offset)
     {
@@ -26,9 +27,10 @@ public partial class Game
             {
                 SetGameDrawTransform(new Vector2(-MathF.Round(CameraX), 208));
                 DrawScenery();
+                DrawTiles(true);
                 foreach (var plant in World.Enemies.Where(e => e.Kind == "PiranhaPlant" && !e.Removed && e.Active)) DrawEnemy(plant);
                 if (pipeClock > 0) DrawPlayer();
-                DrawFlagpoles(); DrawTiles(); DrawMechanisms(); DrawBlocks(); DrawCoins();
+                DrawFlagpoles(); DrawTiles(false); DrawMechanisms(); DrawBlocks(); DrawCoins();
                 foreach (var item in World.Items.Where(i => !i.Removed))
                     Art.Sprite(this, "Items/" + (item.Kind switch { "OneUp" => "OneUp", "SuperStar" => "StarMan", _ => item.Kind }) + ".png", item.Body.Position, "default", Clock,
                         clipBottom: item.Emerging ? item.SourceBlock?.DrawPosition.Y ?? item.Home.Y : null);
@@ -37,7 +39,7 @@ public partial class Game
                 if (pipeClock <= 0 && !(State == Screen.Clear && message == "FLAG" && clearInsideCastle) && !(Invulnerable > 0 && State != Screen.Transform && (int)(Clock * 18) % 2 == 0)) DrawPlayer();
                 foreach (var popup in World.Popups)
                 {
-                    if (popup.Sprite.Length > 0) Art.Sprite(this, popup.Sprite, popup.Position, "default", popup.Age, clipBottom: popup.CoinArc ? popup.SourceBlock?.DrawPosition.Y : null);
+                    if (popup.Sprite.Length > 0) Art.Sprite(this, popup.Sprite, popup.Position, "default", popup.Age, clipBottom: popup.CoinArc && popup.Velocity.Y < 0 ? popup.SourceBlock?.DrawPosition.Y : null);
                     else if (popup.Debris) Art.Tile(this, TerrainPath(), popup.Position, 0, 8, 8);
                     else Art.Text(this, popup.Text, popup.Position);
                 }
@@ -58,7 +60,7 @@ public partial class Game
                 case Screen.GameOver:
                     Art.Text(this, "GAME OVER", new(88, 104)); Art.Text(this, showTouch ? "OK TO TITLE" : "ENTER TO TITLE", new(showTouch ? 84 : 72, 144)); break;
                 case Screen.Ending:
-                    Art.Sprite(this, "Players/Mario/Big.png", new(104, 112)); Art.Sprite(this, "Players/Peach.png", new(152, 112));
+                    Art.Sprite(this, "Players/Mario/Big.png", new(104, 112)); Art.Sprite(this, PrincessSprite, new(152, 112));
                     Art.Text(this, "THANK YOU MARIO!", new(64, 136)); Art.Text(this, "YOUR QUEST IS OVER.", new(48, 160)); Art.Text(this, "ALL 8 WORLDS CLEARED!", new(40, 184)); Art.Text(this, showTouch ? "OK TO TITLE" : "ENTER TO TITLE", new(showTouch ? 84 : 72, 216)); break;
                 case Screen.Help: DrawHelp(); break;
             }
@@ -90,24 +92,33 @@ public partial class Game
         for (float x = MathF.Floor((CameraX - hillWidth) / hillWidth) * hillWidth; x < CameraX + 256; x += hillWidth)
             DrawTexture(hills, new(x, -hills.GetHeight() + 32));
     }
-    private void DrawTiles()
+    private IEnumerable<(float[] tile, bool decoration)> TileDrawOrder()
+    {
+        // The extracted layers are not consistently ordered: 8-4c lists its water after all rocks.
+        // Liquids form the background, then scenery, then the solid terrain in every room.
+        foreach (var tile in World.Data.Tiles) if ((int)tile[2] == 2) yield return (tile, false);
+        foreach (var tile in World.Data.Deco) yield return (tile, true);
+        foreach (var tile in World.Data.Tiles) if ((int)tile[2] != 2) yield return (tile, false);
+    }
+    private void DrawTiles(bool background)
     {
         string terrain = TerrainPath();
-        foreach (var tile in World.Data.Deco)
-            if (tile[0] * 16 > CameraX - 16 && tile[0] * 16 < CameraX + 256)
-                Art.Tile(this, tile[2] < 0 ? TerrainPath() : "Tilesets/Deco/OverworldDeco.png", new(tile[0] * 16, tile[1] * 16), (int)tile[3], (int)tile[4]);
-        foreach (var tile in World.Data.Tiles)
+        foreach (var (tile, decoration) in TileDrawOrder())
         {
+            // Water is behind both ordinary sprites and the pipe-entry sprite;
+            // only foreground terrain should progressively hide a pipe entry.
+            if ((!decoration && (int)tile[2] == 2) != background) continue;
             float x = tile[0] * 16;
             if (x < CameraX - 16 || x > CameraX + 256) continue;
             int source = (int)tile[2]; string path;
-            if (source == 0) path = terrain;
+            if (decoration) path = source < 0 ? terrain : "Tilesets/Deco/OverworldDeco.png";
+            else if (source == 0) path = terrain;
             else if (source == 2) path = "Tilesets/Liquids.png";
             else if (source == 3) path = "Tilesets/Deco/OverworldDeco.png";
             else if (World.Catalog.Atlases.TryGetValue(source, out var atlas) && atlas.Texture.Length > 0) path = atlas.Texture;
             else continue;
             int ax = (int)tile[3], ay = (int)tile[4];
-            if (source == 0 && ax is 8 or 9 && ay >= 2 && ay <= 7) ay = 6 + ay % 2;
+            if (!decoration && source == 0 && ax is 8 or 9 && ay >= 2 && ay <= 7) ay = 6 + ay % 2;
             Art.Tile(this, path, new(x, tile[1] * 16), ax, ay);
         }
     }
@@ -167,9 +178,9 @@ public partial class Game
                 case "Firebar":
                     for (int n = 0; n <= 6; n++) Art.Sprite(this, "Items/PlayerFireball.png", t.Position + Vector2.FromAngle(Clock * 1.85f * (t.Number("direction") == 1 ? -1 : 1)) * (n * 8) + new Vector2(0, 4), "default", Clock);
                     break;
-                case "Trampoline": Art.Sprite(this, "Blocks/Trampoline.png", t.Position, "default", Clock); break;
+                case "Trampoline": DrawTrampoline(t); break;
                 case "CastleToad": Art.Sprite(this, "Players/ToadNPC.png", t.Position); break;
-                case "CastlePeach": Art.Sprite(this, "Players/Peach.png", t.Position); break;
+                case "CastlePeach": Art.Sprite(this, PrincessSprite, t.Position); break;
                 case "Vine":
                     for (float y = t.Y; y > -200; y -= 16) Art.Sprite(this, "Items/Vine.png", new(t.X, y), "default", Clock);
                     break;
@@ -198,15 +209,22 @@ public partial class Game
         };
         string animation = e.Kind == "Goomba" && e.Squashed ? "Stomped" : e.Kind.Contains("Bowser") ? "Idle" : "Walk";
         if (e.Shell) sprite = e.Kind == "BuzzyBeetle" ? "Enemies/BuzzyBeetleShell.png" : e.Kind.StartsWith("Red") ? "Enemies/RedKoopaShell.png" : "Enemies/GreenKoopaShell.png";
-        if (e.Winged) Art.Sprite(this, "Items/Wings.png", e.Body.Position + new Vector2(0, -8), "default", Clock);
-        if (e.Kind == "Lakitu") Art.Sprite(this, "Enemies/LakituCloud.png", e.Body.Position + new Vector2(0, 8), "default", Clock);
-        Art.Sprite(this, sprite, e.Body.Position, animation, e.Clock, e.Direction > 0, flipVertical: e.Flipped);
+        if (e.Winged) Art.Sprite(this, "Items/Wings.png", e.Body.Position + new Vector2(-e.Direction * 4, 0), "Flap", e.Clock, e.Direction > 0);
+        if (e.Kind == "Lakitu" && e.Dead)
+        {
+            Vector2 cloud = e.PreviousBox.HasArea() ? new(e.PreviousBox.GetCenter().X, e.PreviousBox.End.Y + 8) : e.Body.Position + new Vector2(0, 8);
+            Art.Sprite(this, "Enemies/LakituCloud.png", cloud, "default", e.Clock);
+        }
+        Art.Sprite(this, sprite, e.Body.Position, animation, e.Clock, e.Direction > 0,
+            clipBottom: e.Kind == "Podoboo" ? e.Home.Y - e.Body.Height : null, flipVertical: e.Flipped);
+        if (e.Kind == "Lakitu" && !e.Dead) Art.Sprite(this, "Enemies/LakituCloud.png", e.Body.Position + new Vector2(0, 8), "default", e.Clock);
     }
+    private string PlayerAnimation => State == Screen.Transform ? Crouching ? "Crouch" : "Idle" : pipeClock > 0 ? PipePlayerAnimation : State == Screen.Dying ? "Die" : Crouching ? "Crouch" : World.IsWater ? Player.Velocity.Y < 0 ? "SwimUp" : "SwimIdle" : !Player.Grounded && State != Screen.Title ? "Jump" : MathF.Abs(Player.Velocity.X) > 4 ? "Move" : "Idle";
     private void DrawPlayer()
     {
         int visible = VisiblePower;
         string size = visible == 0 ? "Small" : visible == 2 ? "Fire" : "Big";
-        string anim = State == Screen.Transform ? Crouching ? "Crouch" : "Idle" : pipeClock > 0 ? pipeVelocity.X != 0 ? "Move" : "Idle" : State == Screen.Dying ? "Die" : Crouching ? "Crouch" : World.IsWater ? Player.Velocity.Y < 0 ? "SwimUp" : "SwimIdle" : !Player.Grounded && State != Screen.Title ? "Jump" : MathF.Abs(Player.Velocity.X) > 4 ? "Move" : "Idle";
+        string anim = PlayerAnimation;
         if (State == Screen.Clear && StateClock < 1.3f && message == "FLAG") anim = "Climb";
         Color tint = StarTime > 0 ? Color.FromHsv(Clock * 2 % 1, .35f, 1) : Colors.White;
         Art.Sprite(this, "Players/Mario/" + size + ".png", Player.Position, anim, animationTime * (MathF.Abs(Player.Velocity.X) > 100 ? 2 : 1), FacingLeft, tint);
@@ -246,15 +264,15 @@ public partial class Game
     }
     private void DrawPause()
     {
-        Panel(new Rect2(40, 64, 176, 112)); Art.Text(this, "PAUSED", new(104, 76));
-        string[] options = ["RESUME", "RESTART LEVEL", "LEVEL SELECT", "TITLE"];
+        string[] options = PauseOptions;
+        Panel(new Rect2(40, 64, 176, (options.Length + 3) * 16)); Art.Text(this, "PAUSED", new(104, 76));
         for (int i = 0; i < options.Length; i++) Art.Text(this, (pauseChoice == i ? "* " : "  ") + options[i], new(56, 96 + i * 16));
     }
     private void DrawHelp()
     {
         Art.Text(this, "CONTROLS", new(96, 48));
         Art.Text(this, showTouch
-            ? "ARROWS - MOVE / CLIMB\nDOWN - DUCK / PIPE\nJUMP - JUMP / SWIM\nRUN - RUN / FIREBALL\nII - PAUSE\nHOLD RUN AND JUMP\nFOR A LONGER JUMP"
+            ? "TOP ARROWS - WALK\nRUN ARROWS - RUN\nJUMP - JUMP / SWIM\nAT VINE - JUMP CLIMBS\nBIG JUMP - HIGH JUMP\nDUCK - DUCK / PIPE\nFIRE - FIREBALL\nII - PAUSE"
             : "A D - MOVE\nJ - JUMP / SWIM\nK - RUN / FIREBALL\nS DOWN - DUCK / PIPE\nW UP - CLIMB VINE\nENTER ESC - PAUSE\nM - MUTE\nF11 - FULLSCREEN\nF12 - SCREENSHOT", new(32, 72));
         Art.Text(this, showTouch ? "BACK TO TITLE" : "ENTER TO TITLE", new(72, 220));
     }
